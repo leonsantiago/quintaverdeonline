@@ -1,14 +1,3 @@
-@font-face{
-    font-family: "b612";
-    //src: url(../fonts/arvo.ttf) format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-    font-family: b612, Helvetica, Arial;
-    text-decoration: none;
-}
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -26,8 +15,10 @@ html, body {
 }
 
 /*C O N T A I N E R*/
-.main-container{
-    /* background-image: url("../img/pattern_extended.png"); */
+body{
+    font-family: 'Balsamiq Sans', cursive;
+    color: white;
+    background-image: url("../images/pattern_extended.png");
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -132,7 +123,7 @@ div.central{
     width: 140px;
     box-shadow: 2px 1px 20px 5px black;
 }
-.info{
+.product-info{
     padding: 10px;
     margin: 10px;
     /*background: rgba(0, 142, 154, 0.57);
@@ -164,7 +155,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 9999;
     cursor: pointer;
 }
-.pedir{
+.btn_order{
     border-radius: 30px;
     height: 6vh;
     box-shadow: 2px 1px 20px 5px black;
@@ -191,7 +182,7 @@ input[type=number]::-webkit-outer-spin-button {
 .text-shadow{
     text-shadow: 2px 2px 5px black;
 }
-.entregas{
+.deliveries{
     font-size: 2.5vh;
     background: rgba(57, 48, 48, 0.4);
     -webkit-backdrop-filter: blur(10px);
@@ -199,7 +190,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: 2px dashed #ddd;
     border-radius: 30px;
     box-shadow: 2px 2px 10px 2px black;
-    margin: 2vh 1vh;
+    margin: 10vh 3vh;
     padding-top: 10px;
 }
 @keyframes spin {

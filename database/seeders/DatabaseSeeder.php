@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->truncateTable([
+            'categories',
+            'products',
+        ]);
+
+        $this->call(CategoriesSeeder::class);
+        $this->call(ProductsSeeder::class);
+
+
+    }
+    protected function truncateTable(array $tables){
+
+        Schema::enableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        foreach ($tables as $table){
+            DB::table($table)->truncate();
+        }
+
+        Schema::disableForeignKeyConstraints();
     }
 }
