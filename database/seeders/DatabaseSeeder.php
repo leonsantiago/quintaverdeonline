@@ -18,21 +18,23 @@ class DatabaseSeeder extends Seeder
         $this->truncateTable([
             'categories',
             'products',
+            'users',
+            'orders',
         ]);
 
         $this->call(CategoriesSeeder::class);
         $this->call(ProductsSeeder::class);
-
+        $this->call(UsersSeeder::class);
+        $this->call(OrdersSeeder::class);
 
     }
     protected function truncateTable(array $tables){
 
-        Schema::enableForeignKeyConstraints();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        Schema::disableForeignKeyConstraints();
+        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         foreach ($tables as $table){
             DB::table($table)->truncate();
         }
-
-        Schema::disableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
     }
 }

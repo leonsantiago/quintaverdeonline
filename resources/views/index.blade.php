@@ -11,7 +11,7 @@
 
         {{--    <link rel="stylesheet" type="text/css" href="<?= base_url?>assets/css/print.css" media="print" />--}}
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>Quinta verde</title>
@@ -20,7 +20,7 @@
     <header class="row main-header  justify-content-center">
         <div class="col-9" id="logo">
             <div class="header mx-auto">
-                <img src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px">
+                <img src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
             </div>
         </div>
     </header>
