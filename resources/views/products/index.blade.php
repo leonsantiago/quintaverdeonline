@@ -4,7 +4,6 @@
 @section('content')
 
 
-
     <div class="row">
         <div class="col-11 modal-header text-center tittle mx-auto">
             <h2 class="col-11 modal-title w-100 text-shadow">
@@ -12,13 +11,14 @@
             </h2>
         </div>
     </div>
+    <form id="products" method="post" action="{{ route('order/newOrder') }}">
+        @csrf
 
-    <form method="post" action="{{ route('products/index') }}">
         <div class="row col-10 mx-auto">
             @foreach( $products as $product )
 
                 <div id="product" class="col-11 col-md-3 align-middle text-shadow product">
-                    <?php $img_url = '/images/' . strtolower($product->name) . '.jpg' ?>
+                    <?php $img_url = '/images/' . strtolower( $product->name ) . '.jpg' ?>
                     <div class="product-image">
                         <img src="{{ URL::asset($img_url) }}" alt="" class="mx-auto d-block rounded-circle">
                     </div>
@@ -37,10 +37,11 @@
                             <div class="col-4">
                                 <div class="text-center">
                                     @if($product->unit == 'kg')
-                                        <input id="{{ $product->id }}_quantity" class="form-control text-center quantity" name="quantity[{{ $product->id }}]" type="number" min="0" max="20" step="0.5" placeholder="0.0" value="" style="text-align: center;" onkeydown="return false">
+                                        <input id="{{ $product->id }}_quantity" class="form-control text-center quantity" name="quantity[{{ $product->id }}]" type="number" min="0" max="20" step="0.5" placeholder="0.0" disabled="true" value="{{ old('quantity[$product->id]') }}" style="text-align: center;" onkeydown="return false">
                                     @else
-                                        <input id="{{ $product->id }}_quantity" class="form-control text-center quantity" name="quantity[{{ $product->id }}]" type="number" min="0" max="20" placeholder="0.0" value="" style="text-align: center; onkeydown="return false">
+                                        <input id="{{ $product->id }}_quantity" class="form-control text-center quantity" name="quantity[{{ $product->id }}]" type="number" min="0" max="20" placeholder="0.0" disabled="true" value="" style="text-align: center;" onkeydown="return false">
                                     @endif
+                                        <input type="hidden" id="{{ $product->id }}_product" name="products[{{ $product->id }}]" value="{{ $product->id }}" disabled="true">
                                 </div>
                             </div>
                             <div class="col-3" id="increase" onclick="increaseValue('{{ $product_id_unit }}')" value="Increase Value">
@@ -63,7 +64,7 @@
         <div class="row text-center float-button">
             <div class="col-12 mx-auto">
                 <div class="col-12 col-md-4 mx-auto fixed-bottom">
-                    <input class="btn_order" name="ver_pedido" type="submit" value="Ver mi pedido">
+                    <input class="btn_order" name="ver_pedido" type="submit" value="Ver mi pedido" onclick="notSubmit()">
                 </div>
             </div>
         </div>

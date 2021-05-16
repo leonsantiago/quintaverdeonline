@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::namespace('App\Http\Controllers')->group(function (){
-    Route::get('/products', 'ProductController@index')->name('products/index');
+    Route::get('/', 'ProductController@index')->name('products/index');
+    Route::post('/order/new', 'OrderController@newOrder')->name('order/newOrder');
+    Route::post('/order', 'OrderController@store')->name('order/store');
+    Route::get('/order/{id}', 'OrderController@show')->name('order/show')
+        ->where('id', '[0-9]+');
+    //Route::get('order/{id}', 'OrderController@show')->name('order/show');
 });

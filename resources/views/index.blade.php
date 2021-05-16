@@ -4,7 +4,7 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -20,17 +20,24 @@
     <header class="row main-header  justify-content-center">
         <div class="col-9" id="logo">
             <div class="header mx-auto">
-                <img src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
+                <a href="{{ route('products/index') }}">
+                    <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
+                </a>
             </div>
         </div>
     </header>
 
-    @yield('content')
+    <div class="container">
+
+        @yield('content')
+
+    </div>
+
 
         <footer class="footer" id="footer" style="background: white;">
-            <div class="row text-center">
+            <div class="row text-center text-shadow">
                 <p>Desarrollado por
-                    <a href="https://www.instagram.com/akhenaleon">  <span style="color:#01B1EA"> Santiago Leon </span> &copy; <?= date('Y') ?></a>
+                    <a href="https://www.instagram.com/akhenaleon">  <span > Santiago Leon </span> &copy; <?= date('Y') ?></a>
                 </p>
             </div>
         </footer>

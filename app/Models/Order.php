@@ -10,10 +10,21 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
 
+    protected $fillable = ['user_id','payment_type', 'total'];
+
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function orderDetails(){
-        return $this->hasMany(Order::class, 'order_id');
+    public function products(){
+        return $this->belongsToMany(Product::class, 'order_details',
+            'order_id', 'product_id')->withTimestamps()->withPivot('quantity');
+    }
+
+    public function subtotal($id){
+        $quantity = $this->products()->find($id)->pivot['quantity'];
+        $price = $this->products()->find($id)->price;
+        $subtotal = (float)($quantity * $price);
+
+        return $subtotal;
     }
 }

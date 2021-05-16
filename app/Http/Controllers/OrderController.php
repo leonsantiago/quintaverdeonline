@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -24,8 +26,15 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $order = new Order();
+        //
 
+    }
+
+    public function newOrder(){
+        $quantity = $_POST['quantity'];
+        $products_order = $_POST['products'];
+        $products = Product::whereIn('id', $products_order)->get();
+        return view('orders/new', compact('products', 'quantity'));
     }
 
     /**
@@ -36,7 +45,27 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = User::create([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+        ]);
+
+        $products = $request->input('products');
+        $quantities = $request->input('quantity', []);
+
+        $order = Order::create([
+            'user_id' => $client->id,
+            'payment_type' => $request->payment_type,
+            'total' => $request->total,
+        ]);
+        for($product = 1; $product <= count($products); $product++){
+            $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
+        }
+
+        return redirect()->route('order/show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
+        //return view('orders/show', compact('order', 'client'));
     }
 
     /**
@@ -48,7 +77,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-        return view('order.show', compact('order'));
+        $client = $order->user()->get();
+        return view('orders/show', compact('order', 'client'));
     }
 
     /**
