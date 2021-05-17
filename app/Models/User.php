@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function order(){
+        return $this->hasOne(Order::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

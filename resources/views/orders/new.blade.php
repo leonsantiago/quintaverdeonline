@@ -52,7 +52,7 @@
 
         {{--PAYMENT SECTION--}}
 
-        <div class="col-12 col-md-6 mx-auto payment-info text-center" id="payment-info" style="color: white;" >
+        <div class="col-12 col-md-6 mx-auto payment-info text-center" id="payment-info" style="display: none" >
             <p class="text-shadow h4">Método de pago</p>
             <div class="row justify-content-around">
                 <div class="form-check form-check-inline col-4 payment-type">

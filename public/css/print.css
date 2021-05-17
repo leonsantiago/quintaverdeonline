@@ -1,0 +1,29 @@
+.header{
+    background: lightgrey;
+}
+img{
+    height: 200px;
+}
+body{
+    color: black;
+}
+.table{
+    background: #a0aec0;
+    border-radius: 30px;
+}
+.alert{
+    display: none;
+}
+.total{
+    border: none;
+}
+.text-shadow{
+
+}
+.imprimir{
+    display: none;
+}
+
+footer{
+    display: none;
+}

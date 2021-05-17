@@ -7,43 +7,70 @@
         </div>
     @endif
 
-    <form action="{{ route('products/index') }}">
-        <div class="table-responsive col-11 col-md-5 mx-auto">
-            <table class="table col-11 col-md-4 text-shadow" style="color:white;">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Subtotal</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php $total = 0; ?>
-                <?php $i = 1; ?>
-                @foreach( $order->products as $product )
-                    <tr>
-                        <th scope="row">{{ $i }}</th>
-                        <td>{{ $product->name }}</td>
-
-                        <td>{{ $product->pivot['quantity'] }}</td>
-
-                        <td>$ {{ $order->subtotal($product->id) }}</td>
-
-                    </tr>
-                    <?php $total += $order->subtotal($product->id) ?>
-                    <?php $i++; ?>
-                @endforeach
-                </tbody>
-            </table>
-            <div class="row col-5 mx-auto">
-                <div class="text-center text-shadow total">
-                    <h4>Total: ${{  $total }}</h4>
-                </div>
-            </div>
-            <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
+    <div class="row">
+        <div class="col-11 text-center">
+            <h1 class="display-2">Pedido # {{ $order->id }}</h1>
         </div>
-    </form>
+    </div>
+    <div class="form-group">
+        <ul>
+            <li>Cliente: {{ $client->lastname . ', ' . $client->name }}</li>
+            <li>Teléfono: {{ $client->phone }}</li>
+            <li>Dirección: {{ $client->address }}</li>
+        </ul>
+    </div>
+    <div class="table-responsive col-12 col-md-5 mx-auto">
+        <table class="table col-11 col-md-4 text-shadow" style="color:white;">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $total = 0; ?>
+            <?php $i = 1; ?>
+            @foreach( $order->products as $product )
+                <tr>
+                    <th scope="row">{{ $i }}</th>
+                    <td>{{ $product->name }}</td>
+
+                    <td>{{ $product->pivot['quantity'] }}</td>
+
+                    <td>$ {{ $order->subtotal($product->id) }}</td>
+
+                </tr>
+                <?php $total += $order->subtotal($product->id) ?>
+                <?php $i++; ?>
+            @endforeach
+            </tbody>
+        </table>
+        <div class="row col-5 mx-auto">
+            <div class="text-center text-shadow total">
+                <h4>Total: ${{  $total }}</h4>
+            </div>
+        </div>
+        <div class="row center-xs">
+            <div class="col-xs-8">
+                <button class="imprimir" onClick="window.print()">Descarga tu pedido</button>
+            </div>
+        </div>
+        <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
+    </div>
+    <div class="row">
+        <div class="col-11 col-md-6 text-shadow mx-auto text-center">
+            <p>Ante cualquier problema o duda por favor de contactarse <span>+54 9 3816 16-3996</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11 col-md-6 entregas text-shadow mx-auto text-center" style="color: white;">
+            <p>Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs</p>
+            <p>Únicamente para Yerba Buena</p>
+        </div>
+    </div>
+
 @endsection
 
 

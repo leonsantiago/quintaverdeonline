@@ -77,7 +77,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-        $client = $order->user()->get();
+        $client = $order->user()->first();
         return view('orders/show', compact('order', 'client'));
     }
 
