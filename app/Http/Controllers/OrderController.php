@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class OrderController extends Controller
 {
@@ -91,6 +93,15 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         return view('order.edit', compact('order'));
+    }
+
+    public function generatePDF($id){
+        $order = Order::find($id);
+        $client = $order->user()->first();
+        $products = $order->products()->get();
+
+        $pdf = PDF::loadView('orders/printable', compact('order', 'client', 'products'));
+        return $pdf->download("OrdenNro{$order->id}.pdf");
     }
 
     /**

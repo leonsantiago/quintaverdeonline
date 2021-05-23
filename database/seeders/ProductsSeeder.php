@@ -40,7 +40,7 @@ class ProductsSeeder extends Seeder
         ]);
 
         Product::create([
-            'name' => 'Dulc artesanal (1 kg)',
+            'name' => 'Dulce artesanal (1 kg)',
             'category_id' => 3,
             'unit' => 'unidad',
             'price' => 400,

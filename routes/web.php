@@ -19,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers')->group(function (){
     Route::get('/', 'ProductController@index')->name('products/index');
-    Route::post('/order/new', 'OrderController@newOrder')->name('order/newOrder');
+    Route::post('/order/new', 'OrderController@newOrder')->name('order/new');
     Route::post('/order', 'OrderController@store')->name('order/store');
     Route::get('/order/{id}', 'OrderController@show')->name('order/show')
         ->where('id', '[0-9]+');
+    Route::get('/order/pdf/{id}','OrderController@generatePDF')
+        ->name('order/pdf');
     //Route::get('order/{id}', 'OrderController@show')->name('order/show');
 });

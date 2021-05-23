@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderDetailsTable extends Migration
+class AddRolToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id');
-            $table->foreignId('product_id');
-            $table->float('quantity');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('roles')->default('client')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('roles');
+        });
     }
 }

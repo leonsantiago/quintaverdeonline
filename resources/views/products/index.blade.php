@@ -11,13 +11,13 @@
             </h2>
         </div>
     </div>
-    <form id="products" method="post" action="{{ route('order/newOrder') }}">
+    <form id="products" method="post" action="{{ route('order/new') }}">
         @csrf
 
-        <div class="row col-10 mx-auto">
+        <div class="row col-10 col-md-12 mx-auto">
             @foreach( $products as $product )
 
-                <div id="product" class="col-11 col-md-3 align-middle text-shadow product">
+                <div id="product" class="col-11 col-md-2 align-middle text-shadow product">
                     <?php $img_url = '/images/' . strtolower( $product->name ) . '.jpg' ?>
                     <div class="product-image">
                         <img src="{{ URL::asset($img_url) }}" alt="" class="mx-auto d-block rounded-circle">

@@ -6,7 +6,6 @@
             {!! \Session::get('success') !!}
         </div>
     @endif
-
     <div class="row">
         <div class="col-11 text-center">
             <h1 class="display-2">Pedido # {{ $order->id }}</h1>
@@ -52,9 +51,9 @@
                 <h4>Total: ${{  $total }}</h4>
             </div>
         </div>
-        <div class="row center-xs">
+        <div class="row mx-auto text-center download-pdf">
             <div class="col-xs-8">
-                <button class="imprimir" onClick="window.print()">Descarga tu pedido</button>
+                <a href="{{ URL::to('order/pdf/' . $order->id) }}">Descargar pedido</a>
             </div>
         </div>
         <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
