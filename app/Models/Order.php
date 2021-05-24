@@ -10,10 +10,14 @@ class Order extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+
     protected $table = 'orders';
 
     protected $fillable = ['user_id','payment_type', 'total'];
+
+    public function searchByDate(date $from, date $to){
+        Order::all()->where('');
+    }
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');

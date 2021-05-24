@@ -18,8 +18,8 @@
             <li>Dirección: {{ $client->address }}</li>
         </ul>
     </div>
-    <div class="table-responsive col-12 col-md-5 mx-auto">
-        <table class="table col-11 col-md-4 text-shadow" style="color:white;">
+    <div class="col-12 col-md-5 mx-auto">
+        <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white;">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -36,7 +36,7 @@
                     <th scope="row">{{ $i }}</th>
                     <td>{{ $product->name }}</td>
 
-                    <td>{{ $product->pivot['quantity'] }}</td>
+                    <td>{{ $product->pivot['quantity'] .'x ' . $product->get_unit() }}</td>
 
                     <td>$ {{ $order->subtotal($product->id) }}</td>
 
@@ -51,9 +51,11 @@
                 <h4>Total: ${{  $total }}</h4>
             </div>
         </div>
-        <div class="row mx-auto text-center download-pdf">
-            <div class="col-xs-8">
-                <a href="{{ URL::to('order/pdf/' . $order->id) }}">Descargar pedido</a>
+        <div class="row col-5 mx-auto text-center download-pdf">
+            <div class="col-12 text-shadow">
+                <a href="{{ URL::to('order/pdf/' . $order->id) }}">
+                    <label for="">Descargar pedido</label>
+                </a>
             </div>
         </div>
         <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
@@ -72,13 +74,3 @@
 
 @endsection
 
-
-<script>
-    let gourl = ('#url').value;
-
-    if( window.history.replaceState ) {
-
-        console.log('entro');
-    }
-
-</script>

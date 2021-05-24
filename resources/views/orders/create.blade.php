@@ -1,6 +1,15 @@
 @extends('index')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="post" action="{{ route('order/store') }}">
         @csrf
         <div class="col-12 col-md-5">
@@ -21,7 +30,7 @@
                     <th scope="row">{{ $i }}</th>
                     <td>{{ $product->name }}</td>
 
-                    <td>{{ $quantity[$product->id] . ' ' . $product->unit }}</td>
+                    <td>{{ $quantity[$product->id] . ' ' . $product->get_unit() }}</td>
 
                     <td>$ {{ ($product->price * $quantity[$product->id]) }}</td>
 
@@ -55,16 +64,16 @@
             <p class="text-shadow h4">Método de pago</p>
             <div class="row justify-content-around">
                 <div class="form-check form-check-inline col-4 payment-type">
-                    <label class="form-check-label" for="transfer">
-                        <input class="form-check-input" type="radio" name="payment_type" id="transfer" value="transferencia" required >
-                        <span>Transferencia</span>
-                    </label>
+                        <label class="form-check-label" for="transfer">
+                            <input class="form-check-input" type="radio" name="payment_type" id="transfer" value="transferencia" required >
+                            <span>Transferencia</span>
+                        </label>
                 </div>
                 <div class="form-check form-check-inline col-4 payment-type justify-content-between">
-                    <label class="form-check-label text-align-center" for="cash">
-                        <input class="form-check-input" type="radio" name="payment_type" id="cash" value="efectivo">
-                        <span>Efectivo</span>
-                    </label>
+                        <label class="form-check-label text-align-center" for="cash">
+                            <input class="form-check-input" type="radio" name="payment_type" id="cash" value="efectivo">
+                            <span>Efectivo</span>
+                        </label>
                 </div>
             </div>
 
@@ -88,7 +97,7 @@
                     <input type="text" class="form-control" name="address" id="address" placeholder="Frias Silva 111 2A, Yerba Buena" required>
                 </div>
                 <div class="form-group col-11">
-                    <input type="submit" class="btn btn-confirm text-shadow"  value="Confirmar pedido" onclick="validateMinimum()">
+                    <input type="submit" class="btn btn-confirm text-shadow"  value="Confirmar pedido">
                 </div>
             </div>
         </div>
@@ -124,14 +133,7 @@
         $(".payment-info").hide('fast');
     })
     function showPaymentInfo(){
-        total = $('#total')[0].value;
-        if (total >= 500){
-            $(".payment-info").show('fast');
-        }else{
-            let msg = "El valor minimo del pedido debe ser de $ 500.";
-            document.getElementById("total").style.visibility = "visible";
-            document.getElementById("total").focus();
-        }
+        $(".payment-info").show('fast');
     }
 
 </script>

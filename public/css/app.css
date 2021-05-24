@@ -251,7 +251,7 @@ input[type=number]::-webkit-outer-spin-button {
     backdrop-filter: blur(10px);
     border-radius: 10px;
     border: 2px solid #ddd;
-    margin: 2vh;
+    margin: 2vh 0vh;
     padding: 2vh;
     box-shadow: 2px 2px 10px 2px black
 }
@@ -288,15 +288,18 @@ input[type=number]::-webkit-outer-spin-button {
     border: 2px solid white;
     margin: 3em;
 }
-
-.alert-success{
+a{
+    text-decoration: none;
+    color: white;
 }
-
-.modificar_pedido{
-    margin-bottom: 2em;
-}
-#confirmar{
-    margin-top: 8px;
+.download-pdf{
+    color: white;
+    background: rgba(44, 88, 129, 0.54);
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px 2px black;
+    border: 2px solid white;
+    margin: 3em;
+    padding: 1vh;
 }
 
 
@@ -400,57 +403,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .quantity{
         font-size: 2vw;
     }
-    /*
-      .value-button{
-          margin-top: 20px;
-      }
-      .value-button.increase{
-      margin-right: -3em
-      }
-      .value-button.decrease{
-          margin-left: -0.5em;
-      } */
-    .aviso{
-        font-size: 2vw;
-    }
-    .desc-pedido{
-        font-size: 40px;
-    }
-    .listado{
-        font-size: 30px;
-    }
-    .cantidad_pedida{
-        font-size: 30px;
-        margin-left: 170px;
-    }
-    .unidad{
-        margin-left: 70px;
-        width: 200px;
-        font-size: 30px !important;
-    }
-    .modBoton{
-        font-size: 40px;
-        width: 300px;
-    }
-    .metodo_pago{
-        width: 500px;
-        height: 560px;
-    }
-    .metodo_pago input{
-        margin: 80px 20px;
-    }
-    .cliente{
-        transform: translate(100%, -120%);
-        width: 600px;
-    }
-    .datos_cliente input{
-        width: 280px;
-    }
-    input#botConfirmar{
-        transform: translateY(-500%);
-        width: 400px;
-        font-size: 40px;
-    }
+
 }
 @media only screen
 and (min-device-width: 1600px)
@@ -463,33 +416,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
       height: 60px;
       padding: 0px 0px;
     } */
-    div.info{
-        min-width: 300px;
-    }
-    div.info p{
-        font-size: 1.5vw;
-    }
-    div.info h2{
-        font-size: 3vw;
-    }
-    /* .cantidad{
-        font-size: 3vw;
-        width: 2em;
-        height: 60px;
-        margin-left: 0.2em
-        }
-        .value-button{
-            margin-top: 20px;
-        }
-        .value-button.increase{
-        margin-right: -4em
-        }
-        .value-button.decrease{
-            margin-left: -0.5em;
-        } */
-    .aviso{
-        font-size: 2vw;
-    }
 
 }
 

@@ -28,7 +28,8 @@ class Product extends Model
     }
 
     public function get_unit(){
-        return ($this->unit == 'unidad') ? 'un.' : 'kg';
+        return ($this->attributes['unit'] == "unidad") ? "un." : "kg";
+
     }
 
 }
