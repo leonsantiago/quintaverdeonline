@@ -10,7 +10,7 @@
             </ul>
         </div>
     @endif
-    <form method="post" action="{{ route('order/store') }}">
+    <form method="post" action="{{ route('order.store') }}">
         @csrf
         <div class="col-12 col-md-5">
             <table class="table table-borderless align-middle col-12 col-md-4 text-shadow" style="color:white;">
@@ -49,12 +49,12 @@
                 </div>
             </div>
         </div>
-        <div class="row col-md-4 mx-auto d-flex justify-content-around">
+        <div class="row col-md-4 mx-auto d-flex justify-content-around text-center">
             <div class="col-5">
-                <button type="button" class="btn btn-edit text-shadow" onclick= "window.history.back();">Modificar</button>
+                <button type="button" class="btn btn-edit" onclick= "window.history.back();">Modificar</button>
             </div>
             <div class="col-5">
-                <button type="button" class="btn btn-continue text-shadow" onclick="showPaymentInfo()">Continuar</button>
+                <button type="button" class="btn btn-continue" onclick="showPaymentInfo()">Continuar</button>
             </div>
         </div>
 
@@ -97,7 +97,7 @@
                     <input type="text" class="form-control" name="address" id="address" placeholder="Frias Silva 111 2A, Yerba Buena" required>
                 </div>
                 <div class="form-group col-11">
-                    <input type="submit" class="btn btn-confirm text-shadow"  value="Confirmar pedido">
+                    <input type="submit" class="btn btn-confirm "  value="Confirmar pedido">
                 </div>
             </div>
         </div>

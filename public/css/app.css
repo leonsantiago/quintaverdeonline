@@ -16,7 +16,10 @@ html, body {
 
 /*C O N T A I N E R*/
 body{
-    font-family: 'Abhaya Libre', serif;
+    /*font-family: 'Abhaya Libre', serif;*/
+    /*font-family: 'Playfair Display', serif;*/
+    /*font-family: 'B612', sans-serif;*/
+    font-family: 'Ubuntu', sans-serif;
     color: white;
     /*background-image: url("../images/pattern_extended.png");*/
     /*background: linear-gradient(to right, #c04848, #480048);*/
@@ -257,10 +260,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn-continue{
-    text-transform: uppercase;
-    color: white;
-    background: rgb(33, 213, 69);
-    border-radius: 30px;
+    color: black;
+    background: rgba(54, 238, 91, 0.68);
     margin: 2vh;
     box-shadow: 2px 2px 10px 2px black;
     border: 2px solid white;
@@ -270,20 +271,23 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: bold;
     box-shadow:2px 2px 10px 2px white;
 }
+.bg-light{
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.17) !important;
+    backdrop-filter: blur(10px);
+}
+.dropdown-menu{
+    background: rgba(255, 255, 255, 0.17) !important
+}
 .btn-edit{
-    text-transform: uppercase;
-    color: white;
-    background: rgb(33, 146, 213);
-    border-radius: 30px;
-    margin: 2vh;
+    color: black;
+    background: rgba(214, 222, 226, 0.93);
     box-shadow: 2px 2px 10px 2px black;
     border: 2px solid white;
 }
 .btn-confirm{
-    text-transform: uppercase;
-    color: white;
+    color: black;
     background: rgba(33, 213, 69);
-    border-radius: 10px;
     box-shadow: 2px 2px 10px 2px black;
     border: 2px solid white;
     margin: 3em;
@@ -301,6 +305,12 @@ a{
     margin: 3em;
     padding: 1vh;
 }
+.delivery-info{
+    border-radius: 8px;
+    padding: 1vh 0vh;
+    background: rgba(20, 26, 20, 0.31);
+    backdrop-filter: blur(10px);
+}
 
 
 
@@ -315,9 +325,22 @@ a{
 }
 
 
-/*  A D M I N I S T R A C I O N */
-/* L O G I N  */
+/*PRODUCTOS*/
 
+
+.product-table{
+    margin: 3vh 0vh;
+    background: #f8f9fa;
+
+}
+tr:last-child > td {
+    border-bottom: 0;
+}
+/*  A D M I N I S T R A C I O N */
+
+.navbar{
+    margin: 3vh 0vh;
+}
 
 /*A D M I N I S T R A C I O N*/
 

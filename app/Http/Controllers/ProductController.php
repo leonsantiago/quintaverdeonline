@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,9 @@ class ProductController extends Controller
     public function index()
     {
        $products = Product::all();
-       return view('products/index', compact('products'));
+       return view('products.index', compact('products'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -34,9 +38,21 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $input = $request->all();
+
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        Product::create($input);
+        return redirect()->route('product.show')
+            ->with('success', 'Producto creado con exito.');
     }
 
     /**
@@ -47,7 +63,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('products.show', [
+            'product' => Product::findOrFail($id)
+        ]);
     }
 
     /**
@@ -58,7 +76,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('products.edit',[
+            'product' => Product::findOrFail($id)
+        ]);
     }
 
     /**

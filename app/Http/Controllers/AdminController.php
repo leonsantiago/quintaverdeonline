@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,11 +13,26 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function orders()
+    public function index()
     {
-        $order = Order::all();
+        return view('admin.index');
     }
 
+    public function orders()
+    {
+        $orders = Order::all();
+        return view('admin.orders', compact('orders'));
+    }
+
+    public function products()
+    {
+        $products = Product::all();
+        return view('admin.products', compact('products'));
+    }
+    public function shopping()
+    {
+        return view('admin.shopping');
+    }
     /**
      * Show the form for creating a new resource.
      *

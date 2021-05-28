@@ -8,10 +8,20 @@
 
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
         {{--    <link rel="stylesheet" type="text/css" href="<?= base_url?>assets/css/print.css" media="print" />--}}
         <link rel="preconnect" href="https://fonts.gstatic.com">
+        {{--F O N T S--}}
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&family=Lato&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=B612&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>Quinta verde</title>
@@ -20,7 +30,7 @@
     <header class="row main-header  justify-content-center">
         <div class="col-9" id="logo">
             <div class="header mx-auto">
-                <a href="{{ route('products/index') }}">
+                <a href="{{ route('products.index') }}">
                     <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
                 </a>
             </div>

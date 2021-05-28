@@ -11,7 +11,7 @@
             </h2>
         </div>
     </div>
-    <form id="products" method="get" action="{{ route('order/create') }}">
+    <form id="products" method="get" action="{{ route('order.create') }}">
         @csrf
 
         <div class="row col-10 col-md-12 mx-auto">

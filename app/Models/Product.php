@@ -17,6 +17,13 @@ class Product extends Model
      */
     private $unit;
 
+    const UNIT_TYPE = ['unidad', 'kg'];
+
+    //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    /**
+     * @var mixed
+     */
+
     public function category(){
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
@@ -30,6 +37,10 @@ class Product extends Model
     public function get_unit(){
         return ($this->attributes['unit'] == "unidad") ? "un." : "kg";
 
+    }
+
+    public function category_name(){
+        return $this->category->name;
     }
 
 }

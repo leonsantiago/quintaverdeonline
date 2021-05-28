@@ -69,7 +69,7 @@ class OrderController extends Controller
             $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
         }
 
-        return redirect()->route('order/show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
+        return redirect()->route('order.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
         //return view('orders/show', compact('order', 'client'));
     }
 

@@ -60,15 +60,17 @@
         </div>
         <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
     </div>
-    <div class="row">
-        <div class="col-11 col-md-6 text-shadow mx-auto text-center">
-            <p>Ante cualquier problema o duda por favor de contactarse <span>+54 9 3816 16-3996</span></p>
+    <div class="delivery-info">
+        <div class="row">
+            <div class="col-11 col-md-6 text-shadow mx-auto text-center">
+                <p>Ante cualquier problema o duda por favor de contactarse <span>+54 9 3816 16-3996</span></p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-11 col-md-6 entregas text-shadow mx-auto text-center" style="color: white;">
-            <p>Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs</p>
-            <p>Únicamente para Yerba Buena</p>
+        <div class="row">
+            <div class="col-11 col-md-6 entregas text-shadow mx-auto text-center" style="color: white;">
+                <p>Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs</p>
+                <p>Únicamente para Yerba Buena</p>
+            </div>
         </div>
     </div>
 

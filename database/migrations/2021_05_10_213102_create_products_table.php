@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->string('name')->unique();
             $table->string('unit');
-            $table->float('price');
+            $table->float('price', 8, 2);
             $table->boolean('active')->default(true);
 
             $table->timestamps();
