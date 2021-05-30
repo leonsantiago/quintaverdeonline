@@ -18,15 +18,17 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function orders()
+    public function orders(Request $request)
     {
+        var_dump($_GET);
         $orders = Order::all();
-        return view('admin.orders', compact('orders'));
+        return view('admin.orders.orders', compact('orders'));
     }
 
     public function products()
     {
-        $products = Product::all();
+        $products = Product::all()
+            ->sortBy('name');
         return view('admin.products', compact('products'));
     }
     public function shopping()
@@ -42,6 +44,14 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function show_order($id){
+        $order = Order::find($id);
+        return view('admin.orders.show',[
+            'order' => Order::findOrFail($id)
+        ] );
+    }
+
 
     /**
      * Store a newly created resource in storage.

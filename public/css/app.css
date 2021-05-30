@@ -1,4 +1,3 @@
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -262,7 +261,6 @@ input[type=number]::-webkit-outer-spin-button {
 .btn-continue{
     color: black;
     background: rgba(54, 238, 91, 0.68);
-    margin: 2vh;
     box-shadow: 2px 2px 10px 2px black;
     border: 2px solid white;
 }
@@ -327,7 +325,16 @@ a{
 
 /*PRODUCTOS*/
 
+.product-show{
+    background: rgba(20, 26, 20, 0.31);
+    border: 2px solid white;
+    border-radius: 10px;
+}
 
+.product-show,
+.form-group{
+    margin: 10px !important;
+}
 .product-table{
     margin: 3vh 0vh;
     background: #f8f9fa;
@@ -340,6 +347,11 @@ tr:last-child > td {
 
 .navbar{
     margin: 3vh 0vh;
+}
+.img-thumbnail{
+    background-color: #cfc7c7 !important;
+    border-radius: 0.50rem !important;
+    border: none !important;
 }
 
 /*A D M I N I S T R A C I O N*/

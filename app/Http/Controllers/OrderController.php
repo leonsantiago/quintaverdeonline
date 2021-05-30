@@ -69,7 +69,7 @@ class OrderController extends Controller
             $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
         }
 
-        return redirect()->route('order.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
+        return redirect()->route('orders.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
         //return view('orders/show', compact('order', 'client'));
     }
 
@@ -95,7 +95,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        return view('order.edit', compact('order'));
+        return view('orders.edit', compact('order'));
     }
 
     public function generatePDF($id){
@@ -127,6 +127,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route('admin.orders.index')->with('success', 'Su pedido fue eliminado con éxito.');
     }
 }

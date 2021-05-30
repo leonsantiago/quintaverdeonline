@@ -7,13 +7,18 @@
                 <h2>Productos</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('product.create') }}"><i class="fa fa-plus-square"></i> Nuevo</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"><i class="fa fa-plus-square"></i> Nuevo</a>
             </div>
         </div>
     </div>
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('errors'))
+        <div class="alert alert-danger">
             <p>{{ $message }}</p>
         </div>
     @endif
@@ -31,9 +36,9 @@
         @foreach ($products as $product)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td><img src="/image/{{ $product->image }}" width="100px"></td>
+                <td><img class="img-thumbnail" src="/image/{{ $product->image }}" width="100px"></td>
                 <td>{{ $product->name }}</td>
-                <td><a class="btn" href="{{ route('product.show', $product->id) }}" style="color: black;"><i class="fa fa-cog"></i> </a></td>
+                <td><a class="btn" href="{{ route('products.show', $product->id) }}" style="color: black;"><i class="fa fa-cog"></i> </a></td>
             </tr>
         @endforeach
     </table>

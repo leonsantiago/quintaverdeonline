@@ -45,7 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('admin.index') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
+                        <a class="nav-link" href="{{ route('admin.orders.index') }}">Pedidos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +53,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('admin.products') }}">Ver todos</a></li>
-                            <li><a class="dropdown-item" href="{{ route('product.create') }}">Agregar</a></li>
+                            <li><a class="dropdown-item" href="{{ route('products.create') }}">Agregar</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Modificar</a></li>
                         </ul>
@@ -71,10 +71,10 @@
 </div>
 
 
-<footer class="footer" id="footer" style="background: white;">
+<footer class="footer" id="footer" style="background: white; margin-top: 100px; font-size: 2vh;">
     <div class="row text-center text-shadow">
         <p>Desarrollado por
-            <a href="https://www.instagram.com/akhenaleon">  <span > Santiago Leon </span> &copy; <?= date('Y') ?></a>
+            <a href="https://www.instagram.com/akhenaleon"  style=" color: black;">  <span style=" color: black;"> Santiago Leon </span> &copy; <?= date('Y') ?></a>
         </p>
     </div>
 </footer>

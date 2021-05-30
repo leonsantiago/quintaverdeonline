@@ -10,9 +10,9 @@
             </ul>
         </div>
     @endif
-    <form method="post" action="{{ route('order.store') }}">
+    <form method="post" action="{{ route('orders.store') }}">
         @csrf
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-md-5 mx-auto">
             <table class="table table-borderless align-middle col-12 col-md-4 text-shadow" style="color:white;">
                 <thead>
                 <tr>
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="row col-md-4 mx-auto d-flex justify-content-around text-center">
+        <div class="row col-md-4 mx-auto justify-content-around text-center" style="margin: 2vh 1vh;">
             <div class="col-5">
                 <button type="button" class="btn btn-edit" onclick= "window.history.back();">Modificar</button>
             </div>

@@ -16,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-       $products = Product::all();
+       $products = Product::all()
+           ->orderBy('name', 'desc');
        return view('products.index', compact('products'));
     }
 
@@ -51,7 +52,7 @@ class ProductController extends Controller
         }
 
         Product::create($input);
-        return redirect()->route('product.show')
+        return redirect()->route('products.show')
             ->with('success', 'Producto creado con exito.');
     }
 
@@ -64,7 +65,8 @@ class ProductController extends Controller
     public function show($id)
     {
         return view('products.show', [
-            'product' => Product::findOrFail($id)
+            'product' => Product::findOrFail($id),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -90,7 +92,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = Product::find($id);
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $name = str_replace(' ', '', $product->name);
+            $profileImage = $name . '_' . date('Y_m_d_His') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+        #dd($input);
+        if ($product->update($input)){
+            $product->active = $input['active'];
+            $product->save();
+            return redirect()->route('admin.products')
+                ->with('success','El producto fue actualizado correctamente.');
+        }else{
+            return redirect()->route('admin.products')
+                ->with('errors','Hubo un error al actualizar el producto.');
+        }
+
     }
 
     /**

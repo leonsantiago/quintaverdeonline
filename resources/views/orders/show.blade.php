@@ -53,7 +53,7 @@
         </div>
         <div class="row col-5 mx-auto text-center download-pdf">
             <div class="col-12 text-shadow">
-                <a href="{{ URL::to('order/pdf/' . $order->id) }}">
+                <a href="{{ URL::to('orders/pdf/' . $order->id) }}">
                     <label for="">Descargar pedido</label>
                 </a>
             </div>

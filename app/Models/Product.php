@@ -15,7 +15,14 @@ class Product extends Model
     /**
      * @var mixed
      */
-    private $unit;
+    protected $fillable = [
+      'name',
+      'category_id',
+      'price',
+      'unit',
+      'image',
+      'stock'
+    ];
 
     const UNIT_TYPE = ['unidad', 'kg'];
 
@@ -27,6 +34,7 @@ class Product extends Model
     public function category(){
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+
     public function orders(){
         return $this->belongsToMany(Order::class, 'order_details',
             'product_id','order_id')
