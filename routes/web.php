@@ -21,6 +21,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\AdminController;
 
+Route::post('/admin/orders/print/', [AdminController::class, 'print'])
+    ->name('admin.orders.print');
+
 # ORDEN DE COMPRAS
 Route::get('/', [ProductController::class, 'index'])
     ->name('home');
@@ -36,7 +39,8 @@ Route::get('/orders/{id}', [OrderController::class, 'show'])
     ->where('id', '[0-9]+');
 
 Route::get('/orders/pdf/{id}',[OrderController::class, 'generatePDF'])
-    ->name('orders.pdf');
+    ->name('orders.pdf')
+    ->where('id', '[0-9]+');;
 
 Route::delete('orders/{id}', [OrderController::class, 'destroy'])
     ->name('orders.destroy');
@@ -51,6 +55,7 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])
     ->name('admin.orders.index');
 Route::get('/admin/shopping', [AdminController::class, 'shopping'])
     ->name('admin.shopping');
+
 Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
     ->name('admin.orders.show');
 
@@ -58,13 +63,13 @@ Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
 
 Route::get('/products/create', [ProductController::class, 'create'])
     ->name('products.create');
-Route::get('products/store', [ProductController::class, 'store'])
+Route::get('/products/store', [ProductController::class, 'store'])
     ->name('products.store');
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->name('products.show');
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
     ->name('products.edit');
-Route::put('products/update/{id}', [ProductController::class, 'update'])
+Route::put('/products/update/{id}', [ProductController::class, 'update'])
     ->name('products.update');
 Route::delete('/products/destroy', [ProductController::class, 'destroy'])
     ->name('products.destroy');

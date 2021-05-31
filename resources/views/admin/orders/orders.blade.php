@@ -3,39 +3,50 @@
 
     <h2>Pedidos</h2>
 
-    {!! Form::open(array('route' => array('admin.orders.index'))) !!}
-    @csrf
-    @method('GET')
-        <div class="row text-center">
-            <div class="col-5">
-                <label for="">Desde</label>
-                <input type="date" name="initial_date">
+    <form action="{{ route('admin.orders.index') }}" method="GET" >
+        <input type="hidden" name="prueba" value="prueba">
+            <div class="row text-center mx-auto">
+                <div class="col-6 col-md-3">
+                    <label for="">Desde</label>
+                    <input type="date" class="form-control" name="initial_date" value="">
+                </div>
+                <div class="col-6 col-md-3">
+                    <label for="">Hasta</label>
+                    <input type="date" class="form-control" name="end_date" value="">
+                </div>
             </div>
-            <div class="col-4">
-                <label for="">Hasta</label>
-                <input type="date" name="end_date">
-            </div>
+        <div class="row col-3 mx-auto">
+            <button type="submit" class="btn btn-edit" style="margin: 2vh 1vh;">Filtrar</button>
         </div>
-    <button type="submit">Filtrar</button>
-    {!! Form::close() !!}
+    </form>
     <table class="table table-striped product-table">
         <thead>
         <tr>
-            <th>#</th>
+            <th>N°</th>
             <th>Cliente</th>
-            <th>Total</th>
+            <th>Fecha</th>
             <th></th>
         </tr>
         </thead>
-        <?php $i = 0 ?>
         @foreach ($orders as $order)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>{{ $order->id }}</td>
                 <td>{{ $order->user->fullname() }}</td>
-                <td>$ {{ $order->total }}</td>
+                <td>{{ $order->get_date() }}</td>
                 <td><a class="btn" href="{{ route('admin.orders.show', $order->id) }}" style="color: black;"><i class="fa fa-cog"></i> </a></td>
             </tr>
         @endforeach
     </table>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <form action="{{ route('admin.orders.print') }}" method="POST">
+                @csrf
+                @foreach($orders as $order)
+                    <input type="hidden" name="orders[]" value="{{ $order->id }}">
+                @endforeach
+                <button type="submit" class="btn btn-edit"><i class="fas fa-download" style="">  Imprimir</i></button>
+            </form>
+        </div>
+    </div>
 
 @endsection

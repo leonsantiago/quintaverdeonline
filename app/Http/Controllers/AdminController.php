@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,9 +21,16 @@ class AdminController extends Controller
 
     public function orders(Request $request)
     {
-        var_dump($_GET);
-        $orders = Order::all();
-        return view('admin.orders.orders', compact('orders'));
+        if (isset($_GET['initial_date'])){
+            $from = $_GET['initial_date'];
+            $to = $_GET['end_date'] ?: date('Y-m-d');
+            $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        }else{
+            $orders = Order::all();
+        }
+        $orders_id = $orders->pluck('id')->toArray();
+        return view('admin.orders.orders', compact('orders', 'orders_id'));
+
     }
 
     public function products()
@@ -96,6 +104,17 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function print(Request $request){
+
+        $orders_id = $request['orders'];
+        $orders = Order::whereIn('id', $orders_id)->get();
+        $date = date('d-m-Y');
+        $pdf = PDF::loadView('admin/orders/print', compact('orders'));
+        $pdf->setPaper('a4');
+        return $pdf->download("Pedidos{$date}.pdf");
+
     }
 
     /**

@@ -70,8 +70,7 @@
                     {!! Form::open(array('route' => array('orders.destroy', $order->id ))) !!}
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-edit" style="background: #dc3545;"><i class="fas fa-trash-alt fa-2x" style="background: #dc3545; color: white;"></i></button>
-                    {{--<a class="btn btn-edit" href="{{ route('orders.destroy', $order->id) }}" style="background: #dc3545;"> <i class="fas fa-trash-alt fa-2x" style="background: #dc3545; color: white;"></i></a>--}}
+                    <button class="btn btn-edit" style="background: #dc3545;" onclick="return confirm('¿Eliminar pedido {{ $order->id }}?')" ><i class="fas fa-trash-alt fa-2x" style="background: #dc3545; color: white;"></i></button>
                     {!! Form::close() !!}
                 </div>
             </div>

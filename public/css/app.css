@@ -338,7 +338,9 @@ a{
 .product-table{
     margin: 3vh 0vh;
     background: #f8f9fa;
-
+}
+.product-table td{
+    font-size: 2vh;
 }
 tr:last-child > td {
     border-bottom: 0;

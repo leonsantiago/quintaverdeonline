@@ -26,8 +26,8 @@ class StoreOrderRequest extends FormRequest
         return [
             'payment_type' => 'required',
             'total' => 'required|numeric|min:500',
-            'name' => 'required|alpha',
-            'lastname' => 'required|alpha',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'lastname' => 'required|regex:/^[\pL\s\-]+$/u',
             'phone' => 'required|numeric',
             'address' => 'required'
         ];
@@ -39,9 +39,9 @@ class StoreOrderRequest extends FormRequest
             'payment_type.required' => 'Debe seleccionar un metodo de pago.',
             'total.min' => 'El monto minimo de compra es de $ 500.',
             'name.required' => 'Debe introducir su nombre.',
-            'name.alpha' => 'El nombre solo debe contener letras.',
+            'name.regex' => 'El nombre solo debe contener letras.',
             'lastname.required' => 'Debe introducir su apellido.',
-            'lastname.alpha' => 'El apellido solo debe contener letras.',
+            'lastname.regex' => 'El apellido solo debe contener letras.',
             'address.required' => ' Debe introducir su direccion.'
         ];
     }

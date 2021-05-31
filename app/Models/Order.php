@@ -16,7 +16,10 @@ class Order extends Model
     protected $fillable = ['user_id','payment_type', 'total'];
 
     public function searchByDate(date $from, date $to){
-        Order::all()->where('');
+        Order::whereBetween('created_at', [$from, $to])->get();
+    }
+    public function get_date(){
+        return date('d/m/Y h:i A', strtotime($this->created_at));
     }
 
     public function user(){
