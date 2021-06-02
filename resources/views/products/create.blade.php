@@ -25,7 +25,6 @@
 
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <div class="row justify-content-center">
             <div class="row  justify-content-center">
                 <div class="col-10">
@@ -39,7 +38,7 @@
                 <div class="col-10 col-md-3">
                     <div class="form-group">
                         <strong>Categoria:</strong>
-                        <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="category" id="category"  required>
+                        <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="category_id" id="category"  required>
                             <option selected>Elija una categoria</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -76,7 +75,7 @@
             <div class="row  justify-content-center">
                 <div class="col-10 col-md-3">
                     <label class="switch"> ¿En stock?
-                        <input type="checkbox" checked>
+                        <input type="checkbox" name="active" checked>
                         <span class="slider round"></span>
                     </label>
                 </div>

@@ -13,7 +13,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,15 +32,16 @@ class StoreProductRequest extends FormRequest
         ];
     }
 
+
     public function messages()
     {
         return [
-            'name.required' => 'Debe ingresar un nombre,',
-            'category_id.required' => 'Debe seleccionar una categoria.',
-            'unit.required' => 'Debe ingresar la unidad del producto.',
-            'price.required' => 'Debe ingresar el precio.',
+            'name.required' => 'Por favor ingrese un nombre,',
+            'category_id.required' => 'Por favor seleccione una categoria.',
+            'unit.required' => 'Por favor ingrese la unidad del producto.',
+            'price.required' => 'Por favor ingrese el precio.',
             'price.numeric' => 'El precio debe contener un valor numerico.',
-            'active.required' => 'Debe seleccionar si hay stock de venta.'
+            'active.required' => 'Por favor seleccione si hay stock de venta.'
         ];
     }
 }

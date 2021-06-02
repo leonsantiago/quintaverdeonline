@@ -16,8 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-       $products = Product::all();
-       return view('products.index', compact('products'));
+       return view('products.index',[
+           'products' => Product::all()->sortByDesc('name',1),
+           'categories' => Category::all()
+       ]);
     }
 
 
@@ -28,8 +30,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('products.create', compact('categories'));
+        return view('products.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -51,7 +54,7 @@ class ProductController extends Controller
         }
 
         Product::create($input);
-        return redirect()->route('products.show')
+        return redirect()->route('admin.products')
             ->with('success', 'Producto creado con exito.');
     }
 

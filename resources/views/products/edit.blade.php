@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <strong>Categoria:</strong>
                         <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="category" id="category"  required>
-                            <option selected>{{ $product->category_name() }}</option>
+                            <option selected>{{ $product->getCategory() }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

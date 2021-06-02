@@ -24,6 +24,7 @@ class Product extends Model
       'stock'
     ];
 
+
     const UNIT_TYPE = ['unidad', 'kg'];
 
     //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -47,7 +48,7 @@ class Product extends Model
 
     }
 
-    public function category_name(){
+    public function getCategory(){
         return $this->category->name;
     }
 
