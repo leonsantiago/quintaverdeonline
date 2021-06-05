@@ -15,7 +15,7 @@ class Order extends Model
 
     protected $fillable = ['user_id','payment_type', 'total'];
 
-    public function searchByDate(date $from, date $to){
+    public function searchByDate($from, $to){
         Order::whereBetween('created_at', [$from, $to])->get();
     }
 
@@ -29,7 +29,9 @@ class Order extends Model
 
     public function products(){
         return $this->belongsToMany(Product::class, 'order_details',
-            'order_id', 'product_id')->withTimestamps()->withPivot('quantity');
+            'order_id', 'product_id')
+            ->withTimestamps()
+            ->withPivot('quantity');
     }
 
     public function subtotal($id){

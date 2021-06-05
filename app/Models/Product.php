@@ -43,6 +43,13 @@ class Product extends Model
             ->withPivot(['quantity']);
     }
 
+    public function promotions(){
+        return $this->belongsToMany(Promotion::class, 'promotion_details',
+            'product_id', 'promotion_id')
+            ->withTimestamps()
+            ->withPivot(['quantity']);
+    }
+
     public function get_unit(){
         return ($this->attributes['unit'] == "unidad") ? "un." : "kg";
 
