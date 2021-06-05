@@ -4,52 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\OrderDetail;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+
+    public function index(){
         return view('admin.index');
     }
 
-    public function orders(Request $request)
-    {
+    public function orders(Request $request){
         if (isset($_GET['initial_date'])){
             $from = $_GET['initial_date'];
-            $to = $_GET['end_date'] ?: date('Y-m-d');
+            if(isset($_GET['end_date'])){
+              $to = $_GET['end_date'];
+            }else{
+              $to = date('Y-m-d');
+            }
+
             $orders = Order::whereBetween('created_at', [$from, $to])->get();
         }else{
             $orders = Order::all();
         }
+
         $orders_id = $orders->pluck('id')->toArray();
         return view('admin.orders.orders', compact('orders', 'orders_id'));
 
     }
 
-    public function products()
-    {
+    public function products(){
         $products = Product::all()
             ->sortBy('name');
         return view('admin.products', compact('products'));
     }
-    public function shopping()
-    {
-        return view('admin.shopping');
+    public function shopping(Request $request){
+        $orders_id = $request['orders'];
+        $date = date('d-m-Y');
+        $order_details = DB::table('order_details')
+                                            ->join('products', 'order_details.product_id', '=', 'products.id')
+                                            ->select('products.name', 'products.unit', DB::raw('sum(quantity) as quantity'))
+                                            ->whereIn('order_id', $orders_id)
+                                            ->groupBy('product_id')
+                                            ->get();
+
+        $orders = Order::whereIn('id', $orders_id);
+
+        $pdf = PDF::loadView('admin/shopping', compact('order_details', 'orders'));
+        $pdf->setPaper('a4');
+        return $pdf->download("Compras-{$date}.pdf");
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+
+    public function create(){
         //
     }
 
@@ -58,52 +66,6 @@ class AdminController extends Controller
         return view('admin.orders.show',[
             'order' => Order::findOrFail($id)
         ] );
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function print(Request $request){

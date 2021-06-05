@@ -4,20 +4,19 @@
     <h2>Pedidos</h2>
 
     <form action="{{ route('admin.orders.index') }}" method="GET" >
-        <input type="hidden" name="prueba" value="prueba">
-            <div class="row text-center mx-auto">
-                <div class="col-6 col-md-3">
-                    <label for="">Desde</label>
-                    <input type="date" class="form-control" name="initial_date" value="">
-                </div>
-                <div class="col-6 col-md-3">
-                    <label for="">Hasta</label>
-                    <input type="date" class="form-control" name="end_date" value="">
-                </div>
-            </div>
-        <div class="row col-3 mx-auto">
-            <button type="submit" class="btn btn-edit" style="margin: 2vh 1vh;">Filtrar</button>
-        </div>
+      <div class="row text-center mx-auto">
+          <div class="col-6 col-md-2">
+              <label for="">Desde</label>
+              <input type="date" class="form-control" name="initial_date" id="initial_date" value="" required>
+          </div>
+          <div class="col-6 col-md-2">
+              <label for="">Hasta</label>
+              <input type="date" class="form-control" name="end_date" id="end_date" value="" required>
+          </div>
+          <div class="row col-3 col-md-2 mx-auto">
+              <button type="submit" class="btn btn-edit" style="margin: 2vh 1vh;">Filtrar</button>
+          </div>
+      </div>
     </form>
     <table class="table table-striped product-table">
         <thead>
@@ -47,6 +46,16 @@
                 <button type="submit" class="btn btn-edit"><i class="fas fa-download" style="">  Imprimir</i></button>
             </form>
         </div>
+        <div class="col-4">
+            <form action="{{ route('admin.shopping') }}" method="POST">
+                @csrf
+                @foreach($orders as $order)
+                    <input type="hidden" name="orders[]" value="{{ $order->id }}">
+                @endforeach
+                <button type="submit" class="btn btn-edit"><i class="fas fa-cart-arrow-down" style="">  Compras</i></button>
+            </form>
+        </div>
+
     </div>
 
 @endsection

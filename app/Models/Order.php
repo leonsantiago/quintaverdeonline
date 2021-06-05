@@ -18,6 +18,7 @@ class Order extends Model
     public function searchByDate(date $from, date $to){
         Order::whereBetween('created_at', [$from, $to])->get();
     }
+
     public function get_date(){
         return date('d/m/Y h:i A', strtotime($this->created_at));
     }
@@ -25,6 +26,7 @@ class Order extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
     public function products(){
         return $this->belongsToMany(Product::class, 'order_details',
             'order_id', 'product_id')->withTimestamps()->withPivot('quantity');

@@ -68,7 +68,7 @@ class OrderController extends Controller
         for($product = 1; $product <= count($products); $product++){
             $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
         }
-
+        
         return redirect()->route('orders.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
         //return view('orders/show', compact('order', 'client'));
     }
