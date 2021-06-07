@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PromotionDetail extends Model
+class PromotionDetail extends Pivot
 {
     use HasFactory;
     protected $table = 'promotion_details';
     protected $primaryKey = 'id';
-    protected $fillable = ['promotion_id', 'product_id', 'quantity'];
+    protected $fillable = ['promotion_id', 'product_id'];
 
     public function product()
     {

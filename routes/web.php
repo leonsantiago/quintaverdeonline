@@ -20,6 +20,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PromotionController;
 
 Route::post('/admin/orders/print/', [AdminController::class, 'print'])
     ->name('admin.orders.print');
@@ -59,6 +60,18 @@ Route::post('/admin/shopping', [AdminController::class, 'shopping'])
 Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
     ->name('admin.orders.show');
 
+#PROMOCIONES
+
+Route::get('promotions/', [PromotionController::class, 'index'])
+    ->name('promotions.index');
+Route::get('promotions/create', [PromotionController::class, 'create'])
+    ->name('promotions.create');
+Route::post('promotions/store', [PromotionController::class, 'store'])
+    ->name('promotions.store');
+Route::put('promotions/update',[ PromotionController::class, 'update'])
+    ->name('promotions.update');
+Route::get('promotions/products', [PromotionController::class, 'new'])
+    ->name('promotions.new');
 #PRODUCTOS
 
 Route::get('/products/create', [ProductController::class, 'create'])

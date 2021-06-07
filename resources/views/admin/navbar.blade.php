@@ -10,7 +10,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
-
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
     {{--    <link rel="stylesheet" type="text/css" href="<?= base_url?>assets/css/print.css" media="print" />--}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {{--F O N T S--}}
@@ -47,19 +48,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.orders.index') }}">Pedidos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Productos
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('admin.products') }}">Ver todos</a></li>
-                            <li><a class="dropdown-item" href="{{ route('products.create') }}">Agregar</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Modificar</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.products') }}">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.shopping') }}">Lista de compras</a>
+                        <a class="nav-link" href="{{ route('promotions.index') }}">Promociones</a>
                     </li>
                 </ul>
             </div>

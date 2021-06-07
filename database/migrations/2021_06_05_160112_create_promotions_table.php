@@ -18,7 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->text('name');
             $table->text('description');
             $table->string('image')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->float('price');
             $table->timestamps();
         });

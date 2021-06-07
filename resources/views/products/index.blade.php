@@ -19,7 +19,6 @@
             @endforeach
         </div>
     </div>
-    </ul>
     <form id="products" method="get" action="{{ route('orders.create') }}">
         @csrf
 

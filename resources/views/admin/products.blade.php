@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12 margin-tb">
             <div class="pull-left">
-                <h2>Productos</h2>
+                <h2 class="h2 text-shadow">Productos</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('products.create') }}"><i class="fa fa-plus-square"></i> Nuevo</a>

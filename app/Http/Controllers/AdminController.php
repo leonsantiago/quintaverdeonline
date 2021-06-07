@@ -57,10 +57,7 @@ class AdminController extends Controller
         return $pdf->download("Compras-{$date}.pdf");
     }
 
-    public function create(){
-        //
-    }
-
+    
     public function show_order($id){
         $order = Order::find($id);
         return view('admin.orders.show',[

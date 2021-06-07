@@ -70,3 +70,12 @@ function selectCategory(category){
     }
    
 }
+
+function handleCheckProduct(product){
+    let id = $(product).attr("id");
+    if( product.checked == true){
+        $("#submit_" + id).attr('disabled', false);
+    }else{
+        $("#submit_" + id).attr('disabled', true);
+    }
+}
