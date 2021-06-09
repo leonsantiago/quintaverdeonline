@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePromotionRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException;
 
 class PromotionController extends Controller
 {
@@ -49,9 +51,9 @@ class PromotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePromotionRequest $request)
     {
-        
+        $input = $request->all();
         $products = $request->input('products');
         $quantities = $request->input('quantity', []);
 
@@ -66,14 +68,15 @@ class PromotionController extends Controller
         $promotion = Promotion::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'price' => $request->input('price')
+            'price' => $request->input('price'),
+            'image' => $input['image']
         ]);
         
         foreach ($products as $product){
             $promotion->products()->attach($product, ['quantity' => $quantities[$product]]);
         }
 
-        redirect()->route('promotions.index')->with('success', 'Promoción creada con éxito.');
+        return redirect()->route('promotions.index')->with('success', 'Promoción creada con éxito.');
 
     }
 
@@ -96,7 +99,10 @@ class PromotionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $promotion = Promotion::find($id);
+        $products = Product::all();
+        #dd($promotion);
+        return view('promotions.edit', compact(['promotion', 'products']));
     }
 
     /**

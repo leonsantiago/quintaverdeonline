@@ -1,6 +1,17 @@
 @extends('admin.navbar')
 @section('menu')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong><br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="row">
     <div class="col-12 margin-tb">
         <div class="pull-left">
@@ -9,7 +20,7 @@
     </div>
 </div>
 
-<form action="{{ route('promotions.store')}}" method="post">
+<form action="{{ route('promotions.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row client-info">
         <div class="form-group col-11">
@@ -29,17 +40,21 @@
             @foreach ($products as $product)
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default" style="width: 50% !important;">{{ $product->name }}</span>
-                    <input type="number" name="quantity[{{ $product->id}}]" class="form-control" placeholder="Cantidad en {{ $product->unit }}">
+                    <input type="number" name="quantity[{{ $product->id}}]" class="form-control" placeholder="Cantidad en {{ $product->unit }}" required>
                 </div>
                 <input type="hidden" name="products[]" value="{{ $product->id }}">
             @endforeach
         </div>
-        <div class="row col-8 mx-auto">
+        <div class="form-group text-center">
+            <label for="active">¿Hay stock?</label>
+            <input type="checkbox" name="active" value="true">
+        </div>
+        <div class="row col-8 mx-auto mt-3">
             <div class="input-group">
                 <span class="input-group-text">Precio: </span>
                 <input type="number" name="price" class="form-control pull-left" placeholder="$ " style="width: 30% !important;" >
             </div>
-        </div>
+        </div>  
         <div class="form-group col-11 text-center">
             <input type="submit" class="btn btn-confirm "  value="Guardar">
         </div>

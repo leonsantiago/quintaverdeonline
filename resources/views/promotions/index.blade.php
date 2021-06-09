@@ -12,23 +12,24 @@
     </div>
 </div>
 
-@if ($message = Session::get('errors'))
-    <div class="alert alert-danger">
-        <p>{{ $message }}</p>
+<div class="list-promotions mt-5">
+    <div class="row">
+        @foreach ($promotions as $promotion)
+        <div class="col-6 col-md-2">
+            <button type="button" class="btn p-3 mb-3" data-bs-toggle="modal" data-bs-target="#promotion_{{ $promotion->id }}" style="background: white;">
+                @if (isset($promotion->image))
+                    <img class="img-thumbnail mx-auto d-block" src="/image/promotions/{{ $promotion->image }}" style="height: 80px !important; width: 150px !important">
+                @else
+                    <p>No hay imagen asignada</p>
+                @endif
+                {{ $promotion->name }}
+            </button>
+        </div>
+        @include('promotions/show', ['title' => $promotion->name])
+        @endforeach
     </div>
-@elseif ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
 
-@foreach ($promotions as $promotion)
-    <h2>{{ $promotion-> name }}</h2>
-    @foreach ($promotion->products as $product)
-        <h2 class="h5">{{ $product->name }}</h2>
-        <h2 class="h5">{{ $product->pivot['quantity'] }}</h2>
-    @endforeach
-@endforeach
+</div>
 
 
 

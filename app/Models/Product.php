@@ -51,7 +51,16 @@ class Product extends Model
     }
 
     public function get_unit(){
-        return ($this->attributes['unit'] == "unidad") ? "un." : "kg";
+        
+        if ($this->attributes['unit'] == "unidad"){
+            if ($this->pivot['quantity'] > 1){
+                return 'unidades';
+            }else{
+                return 'unidad';
+            }
+        }else{
+            return 'kg';
+        }
 
     }
 

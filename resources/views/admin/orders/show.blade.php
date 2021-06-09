@@ -43,7 +43,7 @@
                     <th scope="row">{{ $i }}</th>
                     <td>{{ $product->name }}</td>
 
-                    <td>{{ $product->pivot['quantity'] .'x ' . $product->get_unit() }}</td>
+                    <td>{{ $product->pivot['quantity'] .' ' . $product->get_unit() }}</td>
 
                     <td>$ {{ $order->subtotal($product->id) }}</td>
 

@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PromotionController;
+
+
 
 Route::post('/admin/orders/print/', [AdminController::class, 'print'])
     ->name('admin.orders.print');
@@ -62,6 +63,9 @@ Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
 
 #PROMOCIONES
 
+Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])
+    ->name('promotions.edit')
+    ->where('id', '[0-9]+');
 Route::get('promotions/', [PromotionController::class, 'index'])
     ->name('promotions.index');
 Route::get('promotions/create', [PromotionController::class, 'create'])
