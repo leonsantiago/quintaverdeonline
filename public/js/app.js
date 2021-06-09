@@ -42,20 +42,40 @@ function decreaseValue(product_id_unit) {
     }
 }
 
-/*function notSubmit(){
-    let elements = document.querySelector('input[value][type="number"]')
-    elements.forEach(el =>{
-        console.log(el);
-        el.disabled = true;
-    });
-}*/
-/*$('#products').submit(function () {
-    elements = document.querySelector('input[value][type="number"]')
-    elements.forEach(el =>{
-        console.log(el);
-       el.disabled = true;
-    });
+function selectCategory(category){
+    console.log(category);
+    switch (category) {
+        case 'Todos':
+                jQuery('[id=Frutas]').show();
+                jQuery("[id=Verduras]").show();
+                jQuery("[id=Otros]").show();
+            break;
+        case 'Frutas':
+                jQuery('[id=Frutas]').show();
+                jQuery("[id=Verduras]").hide();
+                jQuery("[id=Otros]").hide();
+            break;
+        case 'Verduras':
+                jQuery('[id=Frutas]').hide();
+                jQuery("[id=Verduras]").show();
+                jQuery("[id=Otros]").hide();
+            break;
+        case 'Otros':
+                jQuery('[id=Frutas]').hide();
+                jQuery("[id=Verduras]").hide();
+                jQuery("[id=Otros]").show();
+            break;
+        default:
+            break;
+    }
+   
+}
 
-
-    return true; // return false to cancel form action
-});*/
+function handleCheckProduct(product){
+    let id = $(product).attr("id");
+    if( product.checked == true){
+        $("#submit_" + id).attr('disabled', false);
+    }else{
+        $("#submit_" + id).attr('disabled', true);
+    }
+}

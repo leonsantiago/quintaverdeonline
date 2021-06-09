@@ -11,16 +11,24 @@
             </h2>
         </div>
     </div>
-    <form id="products" method="post" action="{{ route('order/new') }}">
+    <div class="row col-12" id="categories" >
+        <div class="form-group text-center categories">
+            <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
+            @foreach ($categories as $category)
+                <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
+            @endforeach
+        </div>
+    </div>
+    <form id="products" method="get" action="{{ route('orders.create') }}">
         @csrf
 
         <div class="row col-10 col-md-12 mx-auto">
             @foreach( $products as $product )
 
-                <div id="product" class="col-11 col-md-2 align-middle text-shadow product">
+                <div id="{{ $product->getCategory()}}" class="col-11 col-md-2 align-middle text-shadow product">
                     <?php $img_url = '/images/' . strtolower( $product->name ) . '.jpg' ?>
                     <div class="product-image">
-                        <img src="{{ URL::asset($img_url) }}" alt="" class="mx-auto d-block rounded-circle">
+                        <img src="/image/{{ $product->image }}" alt="" class="mx-auto d-block rounded-circle">
                     </div>
                     <div class="row well product-info text-shadow text-center">
                         <h4>{{ $product->name }}</h4>
@@ -64,7 +72,7 @@
         <div class="row text-center float-button">
             <div class="col-12 mx-auto">
                 <div class="col-12 col-md-4 mx-auto fixed-bottom">
-                    <input class="btn_order" name="ver_pedido" type="submit" value="Ver mi pedido" onclick="notSubmit()">
+                    <input class="btn btn-edit btn-order text-shadow" name="ver_pedido" type="submit" value="Ver mi pedido" onclick="notSubmit()">
                 </div>
             </div>
         </div>

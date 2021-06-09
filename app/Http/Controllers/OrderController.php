@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Validator;
 
 
 class OrderController extends Controller
@@ -28,15 +30,15 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $quantity = $_GET['quantity'];
+        $products_order = $_GET['products'];
+        $products = Product::whereIn('id', $products_order)->get();
+        return view('orders/create', compact('products', 'quantity'));
 
     }
 
     public function newOrder(){
-        $quantity = $_POST['quantity'];
-        $products_order = $_POST['products'];
-        $products = Product::whereIn('id', $products_order)->get();
-        return view('orders/new', compact('products', 'quantity'));
+
     }
 
     /**
@@ -45,8 +47,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
+
         $client = User::create([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
@@ -65,8 +68,8 @@ class OrderController extends Controller
         for($product = 1; $product <= count($products); $product++){
             $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
         }
-
-        return redirect()->route('order/show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
+        
+        return redirect()->route('orders.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
         //return view('orders/show', compact('order', 'client'));
     }
 
@@ -92,7 +95,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        return view('order.edit', compact('order'));
+        return view('orders.edit', compact('order'));
     }
 
     public function generatePDF($id){
@@ -124,6 +127,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route('admin.orders.index')->with('success', 'Su pedido fue eliminado con éxito.');
     }
 }

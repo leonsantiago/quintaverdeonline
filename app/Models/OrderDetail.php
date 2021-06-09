@@ -12,11 +12,13 @@ class OrderDetail extends Pivot
     protected $primaryKey = 'id';
     protected $fillable = ['order_id', 'product_id'];
 
-    public function products(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 
-    public function order(){
+    public function order()
+    {
         return $this->belongsTo(Order::class);
     }
 }
