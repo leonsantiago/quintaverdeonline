@@ -12,7 +12,6 @@
                     <hr>
                     <ul class="list-group" style="box-shadow: 5px 3px 20px 0px #0000004f;">
                         @foreach ($products as $product)
-                        
                             <li class="list-group-item rounded-0" id="{{ $product->getCategory() }}" style="padding: 10px;">
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" id="{{ $product->id }}" type="checkbox" onchange='handleCheckProduct(this);'>
