@@ -15,6 +15,7 @@
     {{--    <link rel="stylesheet" type="text/css" href="<?= base_url?>assets/css/print.css" media="print" />--}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {{--F O N T S--}}
+    
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&family=Lato&display=swap" rel="stylesheet">
@@ -24,6 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=B612&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{-- T O G G L E   C H E C K B O X --}}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <title>Quinta verde</title>
 </head>

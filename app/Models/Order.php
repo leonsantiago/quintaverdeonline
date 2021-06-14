@@ -41,4 +41,36 @@ class Order extends Model
 
         return $subtotal;
     }
+
+    public function deliverDate(){
+        $deliverDate = date('l');
+        $hour = date('G');
+        switch ($deliverDate) {
+            case 'Sunday':
+                return 'Su pedido será entregado el Lunes.';
+                break;
+            case 'Monday':
+                return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Miércoles.';
+                break;
+            case 'Tuesday':
+                return 'Su pedido será entregado el Miércoles.';
+                break; 
+            case 'Wednesday':
+                return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Viernes.';
+                break;
+            case 'Thursday':
+                return 'Su pedido será entregado el Viernes.';
+                break;
+            case 'Friday':
+                return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Lunes.';
+                break;
+            case 'Saturday':
+                return 'Su pedido será entregado el Lunes';
+                break;
+            
+            default:
+                return 'Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs.';
+                break;
+        }
+    }
 }

@@ -30,7 +30,7 @@
                     <th scope="row">{{ $i }}</th>
                     <td>{{ $product->name }}</td>
 
-                    <td>{{ $quantity[$product->id] . ' ' . $product->get_unit() }}</td>
+                    <td>{{ $quantity[$product->id] . ' x ' . $product->get_unit( $product->unit, $quantity[$product->id]) }}</td>
 
                     <td>$ {{ ($product->price * $quantity[$product->id]) }}</td>
 

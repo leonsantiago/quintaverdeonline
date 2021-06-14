@@ -107,7 +107,7 @@ class ProductController extends Controller
         }else{
             unset($input['image']);
         }
-        #dd($input);
+        
         if ($product->update($input)){
             $product->active = $input['active'];
             $product->save();

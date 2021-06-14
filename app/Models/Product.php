@@ -50,10 +50,10 @@ class Product extends Model
             ->withPivot(['quantity']);
     }
 
-    public function get_unit(){
+    public function get_unit($unit, $qty){
         
-        if ($this->attributes['unit'] == "unidad"){
-            if ($this->pivot['quantity'] > 1){
+        if ($unit == "unidad"){
+            if ($qty > 1){
                 return 'unidades';
             }else{
                 return 'unidad';

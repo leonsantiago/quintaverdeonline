@@ -118,7 +118,28 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $promotion = Promotion::find($id);
+        $input = $request->all();
+        $input['active'] = isset($input['active']);
+        
+        if ($image = $request->file('image')) {
+            $name =  $request->input('name') . "_" . date('YmdHis');
+            $destinationPath = 'image/promotions/';
+            $profileImage = $name . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        if ($promotion->update($input)){
+            $promotion->save();
+            return redirect()->route('promotions.index')
+                ->with('success', 'La promoción fue actualiza con éxito.');
+        }else{
+            return redirect()->route('promotions.index')
+                ->with('errors', 'Hubo un problema al actualizar. Intente de nuevo.');
+        }
     }
 
     /**
