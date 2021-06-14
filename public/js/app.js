@@ -3,7 +3,6 @@ function increaseValue(product_id_unit) {
     let product = product_id_unit.split("_");
     let element = document.getElementById(product[0] + '_quantity');
     let product_ele = document.getElementById(product[0] + '_product');
-    console.log(product);
     let value = parseFloat(element.value);
     value = isNaN(value) ? 0 : value;
     if (product[1] === 'kg'){
@@ -45,30 +44,40 @@ function decreaseValue(product_id_unit) {
 function selectCategory(category){
     console.log(category);
     switch (category) {
+        case 'Promociones':
+          jQuery('[id=Promociones]').show();
+          jQuery('[id=Frutas]').hide();
+          jQuery("[id=Verduras]").hide();
+          jQuery("[id=Otros]").hide();
+          break;
         case 'Todos':
-                jQuery('[id=Frutas]').show();
-                jQuery("[id=Verduras]").show();
-                jQuery("[id=Otros]").show();
-            break;
+          jQuery('[id=Promociones]').show();
+          jQuery('[id=Frutas]').show();
+          jQuery("[id=Verduras]").show();
+          jQuery("[id=Otros]").show();
+          break;
         case 'Frutas':
-                jQuery('[id=Frutas]').show();
-                jQuery("[id=Verduras]").hide();
-                jQuery("[id=Otros]").hide();
-            break;
+          jQuery('[id=Promociones]').hide();
+          jQuery('[id=Frutas]').show();
+          jQuery("[id=Verduras]").hide();
+          jQuery("[id=Otros]").hide();
+          break;
         case 'Verduras':
-                jQuery('[id=Frutas]').hide();
-                jQuery("[id=Verduras]").show();
-                jQuery("[id=Otros]").hide();
-            break;
+          jQuery('[id=Promociones]').hide();
+          jQuery('[id=Frutas]').hide();
+          jQuery("[id=Verduras]").show();
+          jQuery("[id=Otros]").hide();
+          break;
         case 'Otros':
-                jQuery('[id=Frutas]').hide();
-                jQuery("[id=Verduras]").hide();
-                jQuery("[id=Otros]").show();
-            break;
+          jQuery('[id=Promociones]').hide();
+          jQuery('[id=Frutas]').hide();
+          jQuery("[id=Verduras]").hide();
+          jQuery("[id=Otros]").show();
+          break;
         default:
             break;
     }
-   
+
 }
 
 function handleCheckProduct(product){
