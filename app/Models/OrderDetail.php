@@ -11,7 +11,9 @@ class OrderDetail extends Pivot
     protected $table = 'order_details';
     protected $primaryKey = 'id';
     protected $fillable = [
-      'order_id', 'product_id'
+      'order_id',
+      'product_id',
+      'promotion_id'
     ];
 
 // RELATIONS
@@ -25,6 +27,6 @@ class OrderDetail extends Pivot
     }
 
     public function promotion(){
-        return $this->belongsTo(Promotion::class)->nullable()
+        return $this->belongsTo(Promotion::class)->nullable();
     }
 }

@@ -29,7 +29,7 @@ class Order extends Model
     }
 
     public function promotions(){
-      return $this->belongsToMany(Promotion::class, 'order_promotions',
+      return $this->belongsToMany(Promotion::class, 'order_details',
         'order_id', 'promotion_id')
         ->withTimestamps()
         ->withPivot('quantity');

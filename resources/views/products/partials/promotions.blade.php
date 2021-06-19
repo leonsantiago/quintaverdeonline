@@ -1,6 +1,6 @@
-<div id="promotions" class="col-11 col-md-2 align-middle text-shadow product" data-bs-toggle="modal" data-bs-target="#promotion_{{ $promotion->id }}">
+<div id="promotions" class="col-11 col-md-2 align-middle text-shadow product" >
   <div class="product-image">
-      <img src="/image/promotions/{{ $promotion->image }}" alt="{{ $promotion->name }}" class="mx-auto d-block rounded-circle">
+      <img src="/image/promotions/{{ $promotion->image }}" alt="{{ $promotion->name }}" class="mx-auto d-block rounded-circle" data-bs-toggle="modal" data-bs-target="#promotion_{{ $promotion->id }}">
   </div>
   <div class="row well product-info text-shadow text-center">
       <h4>{{ $promotion->name }}</h4>
@@ -17,7 +17,7 @@
           </div>
           <div class="col-4">
               <div class="text-center">
-                <input id="{{ $promotion->id }}_promotion_quantity" class="form-control text-center quantity" name="quantity[{{ $promotion->id }}]" type="number" min="0" max="20" placeholder="0.0" disabled="true" value="" style="text-align: center;" onkeydown="return false">
+                <input id="{{ $promotion->id }}_promotion_quantity" class="form-control text-center quantity" name="promotion_quantity[{{ $promotion->id }}]" type="number" min="0" max="20" placeholder="0.0" disabled="true" value="" style="text-align: center;" onkeydown="return false">
                 <input type="hidden" id="{{ $promotion->id }}_promotion" name="promotions[{{ $promotion->id }}]" value="{{ $promotion->id }}" min="0" disabled="true">
               </div>
           </div>
