@@ -13,16 +13,20 @@
     </div>
     <div class="row col-12" id="categories" >
         <div class="form-group text-center categories">
-            <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
-            <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Promociones')">Promociones</button>
+            <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
+            <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Promociones')">Promociones</button>
             @foreach ($categories as $category)
-                <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
+                <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
             @endforeach
         </div>
     </div>
     <form id="products" method="get" action="{{ route('orders.create') }}">
         @csrf
-
+        <div class="row col-10 col-md-12 mx-auto" id="Promociones">
+            @foreach ($promotions as $promotion)
+                @include('products.partials.promotions')
+            @endforeach
+        </div>
         <div class="row col-10 col-md-12 mx-auto">
             @foreach( $products as $product )
 

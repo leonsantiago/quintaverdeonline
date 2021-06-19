@@ -31,6 +31,7 @@ class Product extends Model
     /**
      * @var mixed
      */
+// RELATIONS
 
     public function category(){
         return $this->hasOne(Category::class, 'id', 'category_id');
@@ -50,8 +51,10 @@ class Product extends Model
             ->withPivot(['quantity']);
     }
 
+// OTHER FUNCTIONS
+
     public function get_unit($unit, $qty){
-        
+
         if ($unit == "unidad"){
             if ($qty > 1){
                 return 'unidades';

@@ -1,3 +1,25 @@
+function promotionValue(promotion_index) {
+
+    let promotion = promotion_index.split("_");
+    let element = document.getElementById(promotion[1] + '_promotion_quantity');
+    let promotion_ele = document.getElementById(promotion[1] + '_promotion');
+    let value = parseFloat(element.value);
+    value = isNaN(value) ? 0 : value;
+    value < 0 ? value = 0 : '';
+    if (promotion[2] === 'increase'){
+        value++;
+    }else{
+        if (element.value > 0) {
+            value--;
+        }
+    }
+    element.value = value;
+    if (element.value > 0){
+        element.disabled = false;
+        promotion_ele.disabled = false;
+    }
+}
+
 function increaseValue(product_id_unit) {
 
     let product = product_id_unit.split("_");
@@ -45,34 +67,34 @@ function selectCategory(category){
     console.log(category);
     switch (category) {
         case 'Promociones':
-          jQuery('[id=Promociones]').show();
-          jQuery('[id=Frutas]').hide();
-          jQuery("[id=Verduras]").hide();
-          jQuery("[id=Otros]").hide();
+          jQuery('[id=Promociones]').fadeIn(200);
+          jQuery('[id=Frutas]').fadeOut(200);
+          jQuery("[id=Verduras]").fadeOut(200);
+          jQuery("[id=Otros]").fadeOut(200);
           break;
         case 'Todos':
-          jQuery('[id=Promociones]').show();
-          jQuery('[id=Frutas]').show();
-          jQuery("[id=Verduras]").show();
-          jQuery("[id=Otros]").show();
+          jQuery('[id=Promociones]').fadeIn(200);
+          jQuery('[id=Frutas]').fadeIn(200);
+          jQuery("[id=Verduras]").fadeIn(200);
+          jQuery("[id=Otros]").fadeIn(200);
           break;
         case 'Frutas':
-          jQuery('[id=Promociones]').hide();
-          jQuery('[id=Frutas]').show();
-          jQuery("[id=Verduras]").hide();
-          jQuery("[id=Otros]").hide();
+          jQuery('[id=Promociones]').fadeOut(200);
+          jQuery('[id=Frutas]').fadeIn(200);
+          jQuery("[id=Verduras]").fadeOut(200);
+          jQuery("[id=Otros]").fadeOut(200);
           break;
         case 'Verduras':
-          jQuery('[id=Promociones]').hide();
-          jQuery('[id=Frutas]').hide();
-          jQuery("[id=Verduras]").show();
-          jQuery("[id=Otros]").hide();
+          jQuery('[id=Promociones]').fadeOut(200);
+          jQuery('[id=Frutas]').fadeOut(200);
+          jQuery("[id=Verduras]").fadeIn(200);
+          jQuery("[id=Otros]").fadeOut(200);
           break;
         case 'Otros':
-          jQuery('[id=Promociones]').hide();
-          jQuery('[id=Frutas]').hide();
-          jQuery("[id=Verduras]").hide();
-          jQuery("[id=Otros]").show();
+          jQuery('[id=Promociones]').fadeOut(200);
+          jQuery('[id=Frutas]').fadeOut(200);
+          jQuery("[id=Verduras]").fadeOut(200);
+          jQuery("[id=Otros]").fadeIn(200);
           break;
         default:
             break;

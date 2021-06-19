@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,6 +19,7 @@ class ProductController extends Controller
     {
        return view('products.index',[
            'products' => Product::all()->sortByDesc('name',1),
+           'promotions' => Promotion::all(),
            'categories' => Category::all()
        ]);
     }
