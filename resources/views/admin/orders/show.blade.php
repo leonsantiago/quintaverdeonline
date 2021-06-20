@@ -31,20 +31,46 @@
             </thead>
             <tbody>
             <?php $total = 0; ?>
-            <?php $i = 1; ?>
-            @foreach( $order->products as $product )
+            @if (isset($order->products))
+              <?php $i = 1; ?>
+              @foreach( $order->products as $product )
+                  <tr>
+                      <th scope="row">{{ $i }}</th>
+                      <td>{{ $product->name }}</td>
+
+                      <td>{{ $product->pivot['quantity'] .' ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
+
+                      <td>$ {{ $order->productSubtotal($product->id) }}</td>
+
+                  </tr>
+                  <?php $total += $order->productSubtotal($product->id) ?>
+                  <?php $i++; ?>
+              @endforeach
+            @endif
+            @if (isset($order->promotions))
+              @php
+                $j = 1;
+              @endphp  
+              <th colspan="4"><hr class="my-4"></th>
+              <tr>
+                <th>#</th>
+                <th>Promoción</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+              @foreach ($order->promotions as $promotion )
                 <tr>
-                    <th scope="row">{{ $i }}</th>
-                    <td>{{ $product->name }}</td>
-
-                    <td>{{ $product->pivot['quantity'] .' ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
-
-                    <td>$ {{ $order->subtotal($product->id) }}</td>
-
+                  <th scope="row">{{ $j }}</th>
+                  <th>{{ $promotion->name }}</th>
+                  <th>{{ $promotion->pivot['quantity'] }} un.</th>
+                  <td>$ {{ $order->promotionSubtotal($promotion->id) }}</td>
                 </tr>
-                <?php $total += $order->subtotal($product->id) ?>
-                <?php $i++; ?>
-            @endforeach
+                @php
+                  $j++;
+                  $total += $order->promotionSubtotal($promotion->id);
+                @endphp
+              @endforeach
+            @endif
             </tbody>
         </table>
         <div class="row col-5 mx-auto">

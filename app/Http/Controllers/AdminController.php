@@ -25,9 +25,9 @@ class AdminController extends Controller
               $to = date('Y-m-d');
             }
 
-            $orders = Order::whereBetween('created_at', [$from, $to])->get();
+            $orders = Order::whereBetween('created_at', [$from, $to])->sortBy('created_at','DESC')->get();
         }else{
-            $orders = Order::all();
+            $orders = Order::all()->sortByDesc('created_at');
         }
 
         $orders_id = $orders->pluck('id')->toArray();
