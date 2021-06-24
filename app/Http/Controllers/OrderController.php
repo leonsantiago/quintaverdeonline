@@ -70,8 +70,8 @@ class OrderController extends Controller
       ]);
 
       //Promotions
-      $promotions = $request->input('promotions');
-      if (count($promotions)) {
+      if ($request->filled('promotions')) {
+        $promotions = $request->input('promotions');
         $promotion_quantities = $request->input('promotions_quantity', []);
         for ($promotion = 1; $promotion <= count($promotions); $promotion++){ 
           $order->promotions()->attach($promotions[$promotion], ['quantity' => $promotion_quantities[$promotion]]);
@@ -79,8 +79,9 @@ class OrderController extends Controller
       }
       
       //Products
-      $products = $request->input('products');
-      if (count($products)) {
+      
+      if ($request->filled('products')) {
+        $products = $request->input('products');
         $quantities = $request->input('quantity', []);
         for($product = 1; $product <= count($products); $product++){
           $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);

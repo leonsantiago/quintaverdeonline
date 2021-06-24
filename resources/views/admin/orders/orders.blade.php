@@ -18,6 +18,7 @@
           </div>
       </div>
     </form>
+    <span style="float: right;">Resultado: {{ count($orders) }} pedidos</span>
     <table class="table table-striped product-table">
         <thead>
         <tr>

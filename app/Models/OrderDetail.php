@@ -19,7 +19,7 @@ class OrderDetail extends Pivot
 // RELATIONS
 
     public function product(){
-        return $this->belongsTo(Product::class)->nullable();
+        return $this->belongsTo(Product::class);
     }
 
     public function order(){
@@ -27,6 +27,6 @@ class OrderDetail extends Pivot
     }
 
     public function promotion(){
-        return $this->belongsTo(Promotion::class)->nullable();
+        return $this->belongsTo(Promotion::class);
     }
 }

@@ -14,7 +14,7 @@ class AddPromotionToOrderDetails extends Migration
     public function up()
     {
         Schema::table('order_details', function (Blueprint $table) {
-            $table->foreignId('promotion_id')->nullable();
+            $table->foreignId('promotion_id')->nullable()->constrained('promotions');
             $table->foreignId('product_id')->nullable()->change();
         });
     }

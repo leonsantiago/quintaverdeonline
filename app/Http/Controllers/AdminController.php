@@ -25,7 +25,7 @@ class AdminController extends Controller
               $to = date('Y-m-d');
             }
 
-            $orders = Order::whereBetween('created_at', [$from, $to])->sortBy('created_at','DESC')->get();
+            $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->get();
         }else{
             $orders = Order::all()->sortByDesc('created_at');
         }
@@ -43,12 +43,52 @@ class AdminController extends Controller
     public function shopping(Request $request){
         $orders_id = $request['orders'];
         $date = date('d-m-Y');
-        $order_details = DB::table('order_details')
-                                            ->join('products', 'order_details.product_id', '=', 'products.id')
-                                            ->select('products.name', 'products.unit', DB::raw('sum(quantity) as quantity'))
-                                            ->whereIn('order_id', $orders_id)
-                                            ->groupBy('product_id')
-                                            ->get();
+        $orders = Order::whereIn('id', $orders_id);
+        
+        // Products quantity by promotions
+        $order_details = OrderDetail::whereIn('order_id', $orders_id)->get();
+        $order_promotions = [];
+        foreach ($order_details as $detail){
+          if ($detail->promotion_id) {
+            //store all orders_details with promotion on a array
+            $order_promotions[] = $detail->id;
+          }
+        }
+        //quantities by each promotion
+        $order_promotion_quantity = DB::table('order_details')
+          ->select('promotion_id', DB::raw('sum(quantity) as quantity'))
+          ->whereIn('id', $order_promotions)
+          ->groupBy('promotion_id')
+          ->get();
+
+        
+        $order_promotion_details = DB::table('order_details')
+          ->join('promotion_details', 'order_details.promotion_id', '=', 'promotion_details.promotion_id')
+          ->select('promotion_details.product_id', DB::raw('sum(order_details.quantity * promotion_details.quantity) as total'))
+          ->whereIn('order_details.order_id', $orders_id)
+          ->groupBy('promotion_details.product_id')
+          ->get();
+
+        // Products quantity by products itself
+        
+        $order_product_details = DB::table('order_details')
+          ->join('products', 'order_details.product_id', '=', 'products.id')
+          ->select('product_id', DB::raw('sum(quantity) as total'))
+          ->whereIn('order_id', $orders_id)
+          ->groupBy('product_id')
+          ->get();
+
+          
+          $merged = $order_product_details->merge($order_promotion_details);
+          $merged = $merged->sort();
+          $result= [];
+          foreach ($merged as $m){
+            if (!isset($result[$m->product_id])){
+              $result[$m->product_id] = (int)($m->total);
+            }else{
+              $result[$m->product_id] += (int)($m->total);
+            }
+          }
 
         $orders = Order::whereIn('id', $orders_id);
 
