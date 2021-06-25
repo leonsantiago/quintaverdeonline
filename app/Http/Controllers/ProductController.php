@@ -18,8 +18,8 @@ class ProductController extends Controller
     public function index()
     {
        return view('products.index',[
-           'products' => Product::all()->sortByDesc('name',1),
-           'promotions' => Promotion::all(),
+           'products' => Product::where('active', 1)->orderBy('name')->get(),
+           'promotions' => Promotion::where('active', 1)->get(),
            'categories' => Category::all()
        ]);
     }

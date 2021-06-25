@@ -78,20 +78,23 @@ class AdminController extends Controller
           ->groupBy('product_id')
           ->get();
 
-          
           $merged = $order_product_details->merge($order_promotion_details);
           $merged = $merged->sort();
           $result= [];
           foreach ($merged as $m){
-            if (!isset($result[$m->product_id])){
-              $result[$m->product_id] = (int)($m->total);
+            if (empty($result[$m->product_id])){
+              $total = (float)($m->total);
+              $result[$m->product_id]['name'] = Product::find($m->product_id)->name;
+              $result[$m->product_id]['unit'] = Product::find($m->product_id)->unit;
+              $result[$m->product_id]['total'] = $total;
             }else{
-              $result[$m->product_id] += (int)($m->total);
+              $total += (float)($m->total);
+              $result[$m->product_id]['total'] = $total;
             }
           }
 
-        $orders = Order::whereIn('id', $orders_id);
-
+          $order_details = $result;
+          
         $pdf = PDF::loadView('admin/shopping', compact('order_details', 'orders'));
         $pdf->setPaper('a4');
         return $pdf->download("Compras-{$date}.pdf");

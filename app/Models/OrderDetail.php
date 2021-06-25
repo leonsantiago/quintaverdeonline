@@ -29,4 +29,8 @@ class OrderDetail extends Pivot
     public function promotion(){
         return $this->belongsTo(Promotion::class);
     }
+
+    // public function getOrderPromotions(orders){
+      
+    // }
 }

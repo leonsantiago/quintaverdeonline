@@ -158,11 +158,11 @@
       </thead>
       <tbody>
         <?php $i = 1 ?>
-      @foreach($order_details as $product1)
+      @foreach($order_details as $product)
         <tr>
           <td class="service">{{ $i }}</td>
-          <td class="desc"> {{ $product->name }} </td>
-          <td class="unit">{{ $product->quantity . ' ' . $product->unit }}</td>
+          <td class="desc"> {{ $product['name'] }} </td>
+          <td class="unit">{{ $product['total'] . ' ' . $product['unit'] }}</td>
           <td class="qty"></td>
         </tr>
       <?php $i++ ?>
