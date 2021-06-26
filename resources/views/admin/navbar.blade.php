@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="container-fluid admin-menu">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin.orders.index') }}">
                 <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 70px" alt="Quinta verde logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

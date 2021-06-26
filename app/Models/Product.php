@@ -43,7 +43,11 @@ class Product extends Model
             ->withTimestamps()
             ->withPivot(['quantity']);
     }
-
+    public function stock(){
+      if ($this->active == 0){
+        return 'Sin stock';
+      }
+    }
     public function promotions(){
         return $this->belongsToMany(Promotion::class, 'promotion_details',
             'product_id', 'promotion_id')

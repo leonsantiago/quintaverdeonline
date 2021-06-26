@@ -1,13 +1,16 @@
 @extends('admin.navbar')
 @section('menu')
 
-    <h2>Pedidos</h2>
+  <div class="col-4">
+    <h2 class="text-shadow">Pedidos</h2>
+  </div>  
+    
 
     <form action="{{ route('admin.orders.index') }}" method="GET" >
       <div class="row text-center mx-auto">
           <div class="col-6 col-md-2">
               <label for="">Desde</label>
-              <input type="date" class="form-control" name="initial_date" id="initial_date" value="" required>
+              <input type="date" class="form-control" name="initial_date" id="initial_date" value="" placeholder="dd-mm-yyyy" min="1990-01-01" max="2035-12-31"required>
           </div>
           <div class="col-6 col-md-2">
               <label for="">Hasta</label>
