@@ -7,28 +7,22 @@
         </div>
     @endif
     <div class="row">
-        <div class="col-11 text-center">
-            <h1 class="display-2">Pedido # {{ $order->id }}</h1>
+        <div class="col-11">
+            <h2 class="display-5">Pedido # {{ $order->id }}</h2>
         </div>
-    </div>
-    <div class="col-12 mx-auto">
-        <table class="table table-borderless align-middle table-client" style="color: white; background: none; font-size: 2vh; box-shadow: none;">
-            <tr>
-                <th><i class="fa fa-address-card fa-2x"></i></th>
-                <th>
-                    <ul>
-                        <li>Cliente: {{ $order->user->fullname() }}</li>
-                        <li>Teléfono: {{ $order->user->phone }}</li>
-                        <li>Dirección: {{ $order->user->address }}</li>
-                    </ul>
-                </th>
-            </tr>
-        </table>
+    <div>
+      <hr>
+    <div class="row p-2 m-2 mb-4 client-info2" style="">
+      <i class="fa fa-address-card fa-2x mb-2"><span class="align-middle"> {{ $order->user->fullname() }}</span></i>
+      <ul style="list-style-type: none">
+          <li>Teléfono: {{ $order->user->phone }}</li>
+          <li>Dirección: {{ $order->user->address }}</li>
+      </ul>
     </div>
     <div class="col-12 col-md-5 mx-auto">
-        <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white;">
+        <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white; font-size: 2.2vh;">
             <thead>
-            <tr>
+            <tr style="font-size: 2.5vh">
                 <th scope="col">#</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
@@ -37,20 +31,46 @@
             </thead>
             <tbody>
             <?php $total = 0; ?>
-            <?php $i = 1; ?>
-            @foreach( $order->products as $product )
+            @if (isset($order->products))
+              <?php $i = 1; ?>
+              @foreach( $order->products as $product )
+                  <tr>
+                      <th scope="row">{{ $i }}</th>
+                      <td>{{ $product->name }}</td>
+
+                      <td>{{ $product->pivot['quantity'] .' ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
+
+                      <td>$ {{ $order->productSubtotal($product->id) }}</td>
+
+                  </tr>
+                  <?php $total += $order->productSubtotal($product->id) ?>
+                  <?php $i++; ?>
+              @endforeach
+            @endif
+            @if (isset($order->promotions))
+              @php
+                $j = 1;
+              @endphp  
+              <th colspan="4"><hr class="my-4"></th>
+              <tr>
+                <th>#</th>
+                <th>Promoción</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+              @foreach ($order->promotions as $promotion )
                 <tr>
-                    <th scope="row">{{ $i }}</th>
-                    <td>{{ $product->name }}</td>
-
-                    <td>{{ $product->pivot['quantity'] .' ' . $product->get_unit() }}</td>
-
-                    <td>$ {{ $order->subtotal($product->id) }}</td>
-
+                  <th scope="row">{{ $j }}</th>
+                  <th>{{ $promotion->name }}</th>
+                  <th>{{ $promotion->pivot['quantity'] }} un.</th>
+                  <td>$ {{ $order->promotionSubtotal($promotion->id) }}</td>
                 </tr>
-                <?php $total += $order->subtotal($product->id) ?>
-                <?php $i++; ?>
-            @endforeach
+                @php
+                  $j++;
+                  $total += $order->promotionSubtotal($promotion->id);
+                @endphp
+              @endforeach
+            @endif
             </tbody>
         </table>
         <div class="row col-5 mx-auto">

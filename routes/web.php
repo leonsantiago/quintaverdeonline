@@ -49,7 +49,7 @@ Route::delete('orders/{id}', [OrderController::class, 'destroy'])
 
 #ADMINISTRACION
 
-Route::get('/admin/', [AdminController::class, 'index'])
+Route::get('/admin', [AdminController::class, 'orders'])
     ->name('admin.index');
 Route::get('/admin/products', [AdminController::class, 'products'])
     ->name('admin.products');
@@ -72,7 +72,7 @@ Route::get('promotions/create', [PromotionController::class, 'create'])
     ->name('promotions.create');
 Route::post('promotions/store', [PromotionController::class, 'store'])
     ->name('promotions.store');
-Route::put('promotions/update',[ PromotionController::class, 'update'])
+Route::put('promotions/update/{id}',[ PromotionController::class, 'update'])
     ->name('promotions.update');
 Route::get('promotions/products', [PromotionController::class, 'new'])
     ->name('promotions.new');

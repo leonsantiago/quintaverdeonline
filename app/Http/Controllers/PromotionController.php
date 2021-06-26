@@ -51,11 +51,12 @@ class PromotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePromotionRequest $request)
-    {
+    public function store(StorePromotionRequest $request){
+
+
         $input = $request->all();
-        $products = $request->input('products');
-        $quantities = $request->input('quantity', []);
+        $products = $request->input('products',[]);
+        $quantities = $request->input('quantities', []);
 
         if ($image = $request->file('image')) {
             $name =  $request->input('name') . "_" . date('YmdHis');
@@ -72,8 +73,11 @@ class PromotionController extends Controller
             'image' => $input['image']
         ]);
         
-        foreach ($products as $product){
-            $promotion->products()->attach($product, ['quantity' => $quantities[$product]]);
+        for ($product=0; $product < count($products); $product++) { 
+            if ($products[$product] != '') {
+                $promotion->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
+
+            }
         }
 
         return redirect()->route('promotions.index')->with('success', 'Promoción creada con éxito.');
@@ -114,7 +118,28 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $promotion = Promotion::find($id);
+        $input = $request->all();
+        $input['active'] = isset($input['active']);
+        
+        if ($image = $request->file('image')) {
+            $name =  $request->input('name') . "_" . date('YmdHis');
+            $destinationPath = 'image/promotions/';
+            $profileImage = $name . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        if ($promotion->update($input)){
+            $promotion->save();
+            return redirect()->route('promotions.index')
+                ->with('success', 'La promoción fue actualiza con éxito.');
+        }else{
+            return redirect()->route('promotions.index')
+                ->with('errors', 'Hubo un problema al actualizar. Intente de nuevo.');
+        }
     }
 
     /**

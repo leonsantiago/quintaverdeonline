@@ -80,10 +80,9 @@
             </div>
             <div class="row  justify-content-center">
                 <div class="col-10 col-md-3">
-                    <label class="switch"> ¿En stock?
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
+                  <div class="checkbox text-center">
+                    <input type="checkbox" name="active" data-toggle="toggle" data-on="En stock" data-off="Sin stock" data-onstyle="success" data-offstyle="danger" checked>
+                  </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -15,6 +15,7 @@
     {{--    <link rel="stylesheet" type="text/css" href="<?= base_url?>assets/css/print.css" media="print" />--}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {{--F O N T S--}}
+    
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&family=Lato&display=swap" rel="stylesheet">
@@ -25,6 +26,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {{-- T O G G L E   C H E C K B O X --}}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
     <title>Quinta verde</title>
 </head>
 <body>
@@ -34,7 +39,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="container-fluid admin-menu">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin.orders.index') }}">
                 <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 70px" alt="Quinta verde logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

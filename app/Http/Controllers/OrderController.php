@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Promotion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -28,17 +29,24 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
+      if (isset($_GET['promotions'])) {
+        $promotions = $_GET['promotions'];
+        $promotions = Promotion::whereIn('id', $promotions)->get();
+        $promotion_quantities = $_GET['promotion_quantity'];
+      }else{
+        $promotions = [];
+        $promotion_quantities = [];
+      }
+      if (isset($_GET['products'])) {
         $quantity = $_GET['quantity'];
         $products_order = $_GET['products'];
         $products = Product::whereIn('id', $products_order)->get();
-        return view('orders/create', compact('products', 'quantity'));
-
-    }
-
-    public function newOrder(){
-
+      }else{
+        $products = [];
+        $quantity = [];
+      }
+        return view('orders/create', compact('products', 'quantity', 'promotions', 'promotion_quantities'));
     }
 
     /**
@@ -47,30 +55,41 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
-    {
+    public function store(StoreOrderRequest $request){
+      $client = User::create([
+        'name' => $request->input('name'),
+        'lastname' => $request->input('lastname'),
+        'phone' => $request->input('phone'),
+        'address' => $request->input('address'),
+      ]);
+      
+      $order = Order::create([
+        'user_id' => $client->id,
+        'payment_type' => $request->payment_type,
+        'total' => $request->total,
+      ]);
 
-        $client = User::create([
-            'name' => $request->input('name'),
-            'lastname' => $request->input('lastname'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-        ]);
-
+      //Promotions
+      if ($request->filled('promotions')) {
+        $promotions = $request->input('promotions');
+        $promotion_quantities = $request->input('promotions_quantity', []);
+        for ($promotion = 1; $promotion <= count($promotions); $promotion++){ 
+          $order->promotions()->attach($promotions[$promotion], ['quantity' => $promotion_quantities[$promotion]]);
+        }
+      }
+      
+      //Products
+      
+      if ($request->filled('products')) {
         $products = $request->input('products');
         $quantities = $request->input('quantity', []);
-
-        $order = Order::create([
-            'user_id' => $client->id,
-            'payment_type' => $request->payment_type,
-            'total' => $request->total,
-        ]);
         for($product = 1; $product <= count($products); $product++){
-            $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
+          $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
         }
-        
-        return redirect()->route('orders.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
-        //return view('orders/show', compact('order', 'client'));
+      }
+
+      
+      return redirect()->route('orders.show', ['id' =>$order->id])->with('success', 'Su pedido fue realizado con éxito.');
     }
 
     /**

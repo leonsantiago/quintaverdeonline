@@ -23,8 +23,8 @@ body{
     /*background-image: url("../images/pattern_extended.png");*/
     /* background: linear-gradient(to right, #c04848, #480048); */
     /* background: linear-gradient(to right top, #11998e, #38ef7d); */
-    background: linear-gradient(to right top, #34e89e, #0f3443);
-    /*background: linear-gradient(to top, #00f260, #0575e6);*/
+    /* background: linear-gradient(to right top, #34e89e, #0f3443); */
+    background: linear-gradient(to top, #00f260, #2e567e);
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -262,6 +262,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .client-info{
     margin-top: 2vh;
+}
+.client-info2{
+  background: rgba(20, 26, 20, 0.31);
+  border-radius: 10px;
 }
 /*input[type="radio"]{
     display: none;

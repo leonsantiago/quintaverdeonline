@@ -31,6 +31,7 @@ class Product extends Model
     /**
      * @var mixed
      */
+// RELATIONS
 
     public function category(){
         return $this->hasOne(Category::class, 'id', 'category_id');
@@ -42,7 +43,11 @@ class Product extends Model
             ->withTimestamps()
             ->withPivot(['quantity']);
     }
-
+    public function stock(){
+      if ($this->active == 0){
+        return 'Sin stock';
+      }
+    }
     public function promotions(){
         return $this->belongsToMany(Promotion::class, 'promotion_details',
             'product_id', 'promotion_id')
@@ -50,10 +55,12 @@ class Product extends Model
             ->withPivot(['quantity']);
     }
 
-    public function get_unit(){
-        
-        if ($this->attributes['unit'] == "unidad"){
-            if ($this->pivot['quantity'] > 1){
+// OTHER FUNCTIONS
+
+    public function get_unit($unit, $qty){
+
+        if ($unit == "unidad"){
+            if ($qty > 1){
                 return 'unidades';
             }else{
                 return 'unidad';

@@ -15,8 +15,8 @@ class CreatePromotionDetailsTable extends Migration
     {
         Schema::create('promotion_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('promotion_id');
-            $table->foreignId('product_id');
+            $table->foreignId('promotion_id')->constrained('promotions');
+            $table->foreignId('product_id')->constrained('products');
             $table->float('quantity');
             $table->timestamps();
         });
