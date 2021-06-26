@@ -7,16 +7,19 @@ function promotionValue(promotion_index) {
     value = isNaN(value) ? 0 : value;
     value < 0 ? value = 0 : '';
     if (promotion[2] === 'increase'){
-        value++;
+      value++;
     }else{
-        if (element.value > 0) {
-            value--;
-        }
+      if (element.value > 0) {
+        value--;
+      }
     }
     element.value = value;
     if (element.value > 0){
-        element.disabled = false;
-        promotion_ele.disabled = false;
+      element.disabled = false;
+      promotion_ele.disabled = false;
+    }else{
+      element.disabled = true;
+      promotion_ele.disabled = true;
     }
 }
 
@@ -36,6 +39,9 @@ function increaseValue(product_id_unit) {
     if (element.value > 0){
         element.disabled = false;
         product_ele.disabled = false;
+    }else{
+      element.disabled = true;
+      product_ele.disabled = true;
     }
 }
 
@@ -60,6 +66,9 @@ function decreaseValue(product_id_unit) {
     if (element.value > 0){
         element.disabled = false;
         product_ele.disabled = false;
+    }else{
+      element.disabled = true;
+      product_ele.disabled = true;
     }
 }
 
