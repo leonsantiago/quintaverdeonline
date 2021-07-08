@@ -159,19 +159,31 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($order->products as $product)
-                <tr>
-                    <td class="service">{{ strtoupper($product->name) }}</td>
-                    <td class="desc"> - </td>
-                    <td class="unit">${{ $product->price }}</td>
-                    <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit() }}</td>
-                    <td class="total"> $ {{ $product->price * $product->pivot['quantity'] }}</td>
-                </tr>
-            @endforeach
-
+              @if (count($order->products))
+                @foreach($order->products as $product)
+                    <tr>
+                        <td class="service">{{ strtoupper($product->name) }}</td>
+                        <td class="desc"> - </td>
+                        <td class="unit">${{ $product->price }}</td>
+                        <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
+                        <td class="total"> $ {{ $product->price * $product->pivot['quantity'] }}</td>
+                    </tr>
+                @endforeach
+              @endif
+              @if (count($order->promotions))
+                @foreach($order->promotions as $promotion)
+                  <tr>
+                    <td class="service">{{ strtoupper($promotion->name) }}</td>
+                    <td class="desc">{{ $promotion->description }} </td>
+                    <td class="unit">${{ $promotion->price }}</td>
+                    <td class="qty">{{ $promotion->pivot['quantity']}}</td>
+                    <td class="total"> $ {{ $promotion->price * $promotion->pivot['quantity'] }}</td>
+                  </tr>
+                @endforeach
+              @endif
             <tr>
-                <td colspan="4" class="grand total">TOTAL</td>
-                <td class="grand total">$ {{ $order->total }}</td>
+              <td colspan="4" class="grand total">TOTAL</td>
+              <td class="grand total">$ {{ $order->total }}</td>
             </tr>
             </tbody>
         </table>

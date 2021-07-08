@@ -21,7 +21,7 @@
   <div class="col-12 col-md-5 mx-auto">
     <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white;">
       <thead>
-        @if (isset($order->products))
+        @if (count($order->products))
           <tr>
             <th scope="col">#</th>
             <th scope="col">Producto</th>
@@ -45,7 +45,7 @@
             <?php $i++; ?>
           @endforeach
         @endif
-        @if (isset($order->promotions))
+        @if (count($order->promotions))
           @php
             $j = 1;
           @endphp  
@@ -84,7 +84,6 @@
           </a>
         </div>
       </div>
-    <input type="hidden" id="url" value={{ 'http://127.0.0.1:8000/' }}>
   </div>
   <div class="delivery-info">
     <div class="row">
