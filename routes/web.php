@@ -57,7 +57,6 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])
     ->name('admin.orders.index');
 Route::post('/admin/shopping', [AdminController::class, 'shopping'])
     ->name('admin.shopping');
-
 Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
     ->name('admin.orders.show');
 
@@ -90,3 +89,7 @@ Route::put('/products/update/{id}', [ProductController::class, 'update'])
     ->name('products.update');
 Route::delete('/products/destroy', [ProductController::class, 'destroy'])
     ->name('products.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

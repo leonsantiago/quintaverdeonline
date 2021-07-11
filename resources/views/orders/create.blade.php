@@ -17,59 +17,10 @@
             <?php $total = 0; ?>
             <?php $i = 1; ?>
             @if (count($products))
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-              @foreach( $products as $product )
-              <tr>
-                <th scope="row">{{ $i }}</th>
-                <td>{{ $product->name }}</td>
-
-                <td>{{ $quantity[$product->id] . ' x ' . $product->get_unit( $product->unit, $quantity[$product->id]) }}</td>
-
-                <td>$ {{ ($product->price * $quantity[$product->id]) }}</td>
-              </tr>
-              <input type="hidden" name="products[{{ $i }}]" value="{{ $product->id }}">
-              <input type="hidden" name="quantity[{{ $i }}]" value="{{ $quantity[$product->id] }}">
-                @php
-                  $total += ($product->price * $quantity[$product->id]);
-                  $i++;
-                @endphp
-              @endforeach
+              @include('orders.partials.products')
             @endif
             @if (count($promotions))
-              @if (isset($i))
-                <th colspan="4"><hr class="my-4"></th>
-              @endif
-              @php
-                $j = 1;
-              @endphp
-              <tr>
-                <th>#</th>
-                <th>Promoción</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-              </tr>
-              @foreach ($promotions as $promotion)
-                <tr>
-                  <th scope="row">{{ $j }}</th>
-                  <td>{{ $promotion->name }}</td>
-                  <td>{{ $promotion_quantities[$promotion->id] }} un.</td>
-                  <td>$ {{ ($promotion->price) * ($promotion_quantities[$promotion->id]) }}</td>
-                </tr>
-                <input type="hidden" name="promotions[{{ $j }}]" value="{{ $promotion->id }}">
-                <input type="hidden" name="promotions_quantity[{{ $j }}]" value="{{ $promotion_quantities[$promotion->id] }}">
-                @php
-                  $j++;
-                  $total += ($promotion->price * $promotion_quantities[$promotion->id]);
-                @endphp
-              @endforeach
+              @include('orders.partials.promotions')
             @endif
               </tbody>
           </table>
