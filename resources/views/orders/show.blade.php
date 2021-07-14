@@ -7,9 +7,10 @@
     </div>
   @endif
   <div class="row">
-    <div class="col-11 text-center">
-      <h1 class="display-2">Pedido # {{ $order->id }}</h1>
+    <div class="col-11 text-center text-shadow">
+      <h3>Pedido # {{ $order->id }}</h3>
     </div>
+    <hr>
   </div>
   <div class="form-group">
     <ul>
@@ -19,7 +20,7 @@
     </ul>
   </div>
   <div class="col-12 col-md-5 mx-auto">
-    <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white;">
+    <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white; font-size: 15px;">
       <thead>
         @if (count($order->products))
           <tr>
@@ -39,7 +40,7 @@
               <th scope="row">{{ $i }}</th>
               <td>{{ $product->name }}</td>
               <td>{{ $product->pivot['quantity'] .'x ' . $product->get_unit( $product->unit, $product->pivot['quantity']) }}</td>
-              <td>$ {{ $order->productSubtotal($product->id) }}</td>
+              <td>${{ number_format($order->productSubtotal($product->id), 0, ',', '.') }}</td>
             </tr>
             <?php $total += $order->productSubtotal($product->id) ?>
             <?php $i++; ?>
@@ -61,7 +62,7 @@
               <th scope="row">{{ $j }}</th>
               <th>{{ $promotion->name }}</th>
               <th>{{ $promotion->pivot['quantity'] }} un.</th>
-              <td>$ {{ $order->promotionSubtotal($promotion->id) }}</td>
+              <td>${{number_format($order->promotionSubtotal($promotion->id),0, ',', '.') }}</td>
             </tr>
             @php
               $j++;
@@ -71,16 +72,16 @@
         @endif
         </tbody>
     </table>
-      <div class="row col-5 mx-auto py-auto">
+      <div class="row col-8 col-md-5 mx-auto py-auto">
         <div class="text-center text-shadow total">
-          <h4>Total: ${{  $total }}</h4>
+          <h4>Total: ${{ number_format($total, 2, ',', '.') }}</h4>
         </div>
       </div>
       <p class=" h3 text-center text-shadow">{{ $order->deliverDate() }}</p>
       <div class="row col-6 mx-auto text-center download-pdf">
         <div class="text-shadow">
           <a href="{{ URL::to('orders/pdf/' . $order->id) }}">
-            <label for="">Descargar pedido</label>
+            <label for="" style="font-size: 20px"><i class="fas fa-download m-2" style="background: transparent; color: white;"></i> Descargar</label>
           </a>
         </div>
       </div>

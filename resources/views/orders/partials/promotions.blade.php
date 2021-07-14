@@ -1,4 +1,4 @@
-@if (isset($i))
+@if (count($products))
   <th colspan="4"><hr class="my-4"></th>
 @endif
 @php
@@ -15,12 +15,10 @@
     <th scope="row">{{ $j }}</th>
     <td>{{ $promotion->name }}</td>
     <td>{{ $promotion_quantities[$promotion->id] }} un.</td>
-    <td>$ {{ ($promotion->price) * ($promotion_quantities[$promotion->id]) }}</td>
+    <td>${{ number_format(($promotion->price) * ($promotion_quantities[$promotion->id]),2, ',', '.') }}</td>
   </tr>
   <input type="hidden" name="promotions[{{ $j }}]" value="{{ $promotion->id }}">
   <input type="hidden" name="promotions_quantity[{{ $j }}]" value="{{ $promotion_quantities[$promotion->id] }}">
-  @php
-    $j++;
-    $total += ($promotion->price * $promotion_quantities[$promotion->id]);
-  @endphp
+    <?php $j++;  ?>
+  
 @endforeach

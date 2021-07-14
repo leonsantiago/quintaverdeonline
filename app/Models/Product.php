@@ -8,67 +8,61 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+  use HasFactory;
+  use SoftDeletes;
 
-    protected $table = 'products';
-    /**
-     * @var mixed
-     */
-    protected $fillable = [
-      'name',
-      'category_id',
-      'price',
-      'unit',
-      'image',
-      'stock'
-    ];
+  protected $table = 'products';
+  /**
+   * @var mixed
+   */
+  protected $fillable = [
+    'name',
+    'category_id',
+    'price',
+    'unit',
+    'image',
+    'stock'
+  ];
 
 
-    const UNIT_TYPE = ['unidad', 'kg'];
+  const UNIT_TYPE = ['unidad', 'kg'];
 
-    //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    /**
-     * @var mixed
-     */
+  //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+  /**
+   * @var mixed
+   */
 // RELATIONS
 
-    public function category(){
-        return $this->hasOne(Category::class, 'id', 'category_id');
-    }
+  public function category(){
+    return $this->hasOne(Category::class, 'id', 'category_id');
+  }
 
-    public function orders(){
-        return $this->belongsToMany(Order::class, 'order_details',
-            'product_id','order_id')
-            ->withTimestamps()
-            ->withPivot(['quantity']);
-    }
+  public function orders(){
+    return $this->belongsToMany(Order::class, 'order_details',
+      'product_id','order_id')
+      ->withTimestamps()
+      ->withPivot(['quantity']);
+  }
     public function stock(){
       if ($this->active == 0){
         return 'Sin stock';
       }
     }
     public function promotions(){
-        return $this->belongsToMany(Promotion::class, 'promotion_details',
-            'product_id', 'promotion_id')
-            ->withTimestamps()
-            ->withPivot(['quantity']);
+      return $this->belongsToMany(Promotion::class, 'promotion_details',
+        'product_id', 'promotion_id')
+        ->withTimestamps()
+        ->withPivot(['quantity']);
     }
 
 // OTHER FUNCTIONS
 
-    public function get_unit($unit, $qty){
-
-        if ($unit == "unidad"){
-            if ($qty > 1){
-                return 'unidades';
-            }else{
-                return 'unidad';
-            }
-        }else{
-            return 'kg';
-        }
-
+    public function get_unit(){
+      if ($this->unit == "unidad"){
+        return 'un.';
+      }else{
+        return 'kg';
+      }
     }
 
     public function getCategory(){

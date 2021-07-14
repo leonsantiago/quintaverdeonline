@@ -4,9 +4,9 @@
 @section('content')
   <div class="row">
     <div class="col-11 modal-header text-center tittle mx-auto">
-      <h2 class="col-11 modal-title w-100 text-shadow">
+      <h3 class="col-11 modal-title w-100 text-shadow">
         Productos de la A a la Z
-        </h2>
+        </h3>
     </div>
   </div>
   <div class="row col-12" id="categories" >

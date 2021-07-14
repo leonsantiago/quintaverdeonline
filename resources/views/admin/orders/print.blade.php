@@ -166,7 +166,7 @@
                         <td class="desc"> - </td>
                         <td class="unit">${{ $product->price }}</td>
                         <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
-                        <td class="total"> $ {{ $product->price * $product->pivot['quantity'] }}</td>
+                        <td class="total"> $ {{ number_format($product->price * $product->pivot['quantity'],2,',','.') }}</td>
                     </tr>
                 @endforeach
               @endif
@@ -177,13 +177,13 @@
                     <td class="desc">{{ $promotion->description }} </td>
                     <td class="unit">${{ $promotion->price }}</td>
                     <td class="qty">{{ $promotion->pivot['quantity']}}</td>
-                    <td class="total"> $ {{ $promotion->price * $promotion->pivot['quantity'] }}</td>
+                    <td class="total"> $ {{ number_format($promotion->price * $promotion->pivot['quantity'],2,',','.') }}</td>
                   </tr>
                 @endforeach
               @endif
             <tr>
               <td colspan="4" class="grand total">TOTAL</td>
-              <td class="grand total">$ {{ $order->total }}</td>
+              <td class="grand total">$ {{ number_format($order->total,2,',','.') }}</td>
             </tr>
             </tbody>
         </table>

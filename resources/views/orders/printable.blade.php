@@ -181,7 +181,7 @@
             <td class="desc"> - </td>
             <td class="unit">${{ $product->price }}</td>
             <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
-            <td class="total"> $ {{ $order->productSubtotal($product->id) }}</td>
+            <td class="total"> $ {{ number_format($order->productSubtotal($product->id),2,',','.') }}</td>
           </tr>
         @endforeach
       @endif
@@ -205,14 +205,14 @@
             </td>
             <td class="unit">$ {{ $promotion->price }}</td>
             <td class="qty">{{ $promotion->pivot['quantity'] }} un.</td>
-            <td class="total"> $ {{ $order->promotionSubtotal($promotion->id) }}</td>
+            <td class="total"> $ {{ number_format($order->promotionSubtotal($promotion->id),2,',','.') }}</td>
           </tr>
         @endforeach
       @endif
 
         <tr>
             <td colspan="4" class="grand total">TOTAL</td>
-            <td class="grand total">$ {{ $order->total }}</td>
+            <td class="grand total">$ {{ number_format($order->total,2,',','.') }}</td>
         </tr>
         </tbody>
     </table>

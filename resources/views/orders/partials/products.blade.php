@@ -14,12 +14,9 @@
 
   <td>{{ $quantity[$product->id] . ' x ' . $product->get_unit( $product->unit, $quantity[$product->id]) }}</td>
 
-  <td>$ {{ ($product->price * $quantity[$product->id]) }}</td>
+  <td>${{ number_format(($product->price * $quantity[$product->id]), 2, ',', '.') }}</td>
 </tr>
 <input type="hidden" name="products[{{ $i }}]" value="{{ $product->id }}">
 <input type="hidden" name="quantity[{{ $i }}]" value="{{ $quantity[$product->id] }}">
-  @php
-    $total += ($product->price * $quantity[$product->id]);
-    $i++;
-  @endphp
+  <?php $i++; ?>
 @endforeach

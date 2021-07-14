@@ -13,20 +13,30 @@
     <form method="post" action="{{ route('orders.store') }}">
       @csrf
       <div class="col-12 col-md-5 mx-auto">
-          <table class="table table-borderless align-middle col-12 col-md-4 text-shadow" style="color:white;">
+          <table class="table table-borderless align-middle col-12 col-md-4 text-shadow" style="color:white; font-size: 15px;">
             <?php $total = 0; ?>
             <?php $i = 1; ?>
             @if (count($products))
               @include('orders.partials.products')
+              @php
+                foreach ($products as $product) {
+                  $total += ($product->price * $quantity[$product->id]);
+                }
+              @endphp
             @endif
             @if (count($promotions))
               @include('orders.partials.promotions')
+              @php
+                foreach($promotions as $promotion) {
+                  $total += ($promotion->price * $promotion_quantities[$promotion->id]);
+                }
+              @endphp
             @endif
               </tbody>
           </table>
-          <div class="row col-5 mx-auto">
+          <div class="row col-10 mx-auto">
             <div class="text-center text-shadow total">
-              <h4 class="my-auto">Total: $ {{  $total }}</h4>
+              <h4 class="my-auto">Total: $ {{  number_format($total,2, ',', '.')  }}</h4>
               <input type="hidden" name="total" id="total" value="{{ $total }}">
             </div>
           </div>
@@ -44,44 +54,25 @@
 
       <div class="col-12 col-md-6 mx-auto payment-info text-center text-shadow" id="payment-info" style="display: none" >
         <p class="text-shadow h4">Método de pago</p>
+        <hr>
         <div class="row justify-content-around">
-          <div class="form-check form-check-inline col-4 payment-type">
+          <div class="form-check col-5 payment-type">
             <label class="form-check-label" for="transfer">
               <input class="form-check-input" type="radio" name="payment_type" id="transfer" value="transferencia" required >
               <span>Transferencia</span>
             </label>
           </div>
-          <div class="form-check form-check-inline col-4 payment-type justify-content-between">
+          <div class="form-check col-5 payment-type">
             <label class="form-check-label text-align-center" for="cash">
               <input class="form-check-input" type="radio" name="payment_type" id="cash" value="efectivo">
               <span>Efectivo</span>
             </label>
           </div>
         </div>
+        <hr>
 
           {{--CLIENT SECTION--}}
-        <div class="row justify-content-center client-info">
-          <p class="h4 text-shadow">Ingrese sus datos</p>
-          <div class="form-group col-11">
-            <label class="text-shadow" for="name">Nombre</label>
-            <input type="text" class="form-control" name="name" id="name" required>
-          </div>
-          <div class="form-group col-11">
-            <label class="text-shadow" for="lastname">Apellido</label>
-            <input type="text" class="form-control" name="lastname" id="lastname" required>
-          </div>
-          <div class="form-group col-11">
-            <label class="text-shadow" for="phone">Celular</label>
-            <input type="number" class="form-control" name="phone" id="phone" placeholder="381 5859123" required>
-          </div>
-          <div class="form-group col-11">
-            <label class="text-shadow" for="address">Dirección</label>
-            <input type="text" class="form-control" name="address" id="address" placeholder="Frias Silva 111 2A, Yerba Buena" required>
-          </div>
-          <div class="form-group col-11">
-            <input type="submit" class="btn btn-confirm "  value="Confirmar pedido">
-          </div>
-        </div>
+        @include('orders.partials.client')
       </div>
     </form>
 
