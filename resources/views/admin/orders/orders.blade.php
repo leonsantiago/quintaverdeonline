@@ -20,24 +20,9 @@
   </div>
 </form>
 <span style="float: right;">Resultado: {{ count($orders) }} pedidos</span>
-<table class="table table-striped product-table">
-    <thead>
-    <tr>
-        <th>N°</th>
-        <th>Cliente</th>
-        <th>Fecha</th>
-        <th></th>
-    </tr>
-    </thead>
-    @foreach ($orders as $order)
-        <tr>
-            <td>{{ $order->id }}</td>
-            <td>{{ $order->user->fullname() }}</td>
-            <td>{{ $order->get_date() }}</td>
-            <td><a class="btn" href="{{ route('admin.orders.show', $order->id) }}" style="color: black;"><i class="fa fa-cog"></i> </a></td>
-        </tr>
-    @endforeach
-</table>
+
+@include('admin.orders.table')
+
 <div class="row justify-content-center">
     <div class="col-4">
         <form action="{{ route('admin.orders.print') }}" method="POST">
