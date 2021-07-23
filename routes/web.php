@@ -28,7 +28,7 @@ Route::post('/admin/orders/print/', [AdminController::class, 'print'])
 
 # ORDEN DE COMPRAS
 Route::get('/', [ProductController::class, 'index'])
-    ->name('home');
+    ->name('products');
 
 Route::get('/orders/create', [OrderController::class, 'create'])
     ->name('orders.create');
@@ -50,13 +50,17 @@ Route::delete('orders/{id}', [OrderController::class, 'destroy'])
 #ADMINISTRACION
 
 Route::get('/admin', [AdminController::class, 'orders'])
-    ->name('admin.index');
+    ->name('admin.index')->middleware('auth');
+
 Route::get('/admin/products', [AdminController::class, 'products'])
     ->name('admin.products');
+
 Route::get('/admin/orders', [AdminController::class, 'orders'])
     ->name('admin.orders.index');
+
 Route::post('/admin/shopping', [AdminController::class, 'shopping'])
     ->name('admin.shopping');
+
 Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
     ->name('admin.orders.show');
 
@@ -65,31 +69,42 @@ Route::get('/admin/orders/{id}', [AdminController::class, 'show_order'])
 Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])
     ->name('promotions.edit')
     ->where('id', '[0-9]+');
+
 Route::get('promotions/', [PromotionController::class, 'index'])
     ->name('promotions.index');
+
 Route::get('promotions/create', [PromotionController::class, 'create'])
     ->name('promotions.create');
+
 Route::post('promotions/store', [PromotionController::class, 'store'])
     ->name('promotions.store');
+
 Route::put('promotions/update/{id}',[ PromotionController::class, 'update'])
     ->name('promotions.update');
+
 Route::get('promotions/products', [PromotionController::class, 'new'])
     ->name('promotions.new');
 #PRODUCTOS
 
 Route::get('/products/create', [ProductController::class, 'create'])
     ->name('products.create');
+
 Route::post('/products/store', [ProductController::class, 'store'])
     ->name('products.store');
+
 Route::get('/products/{id}', [ProductController::class, 'show'])
     ->name('products.show');
+
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
     ->name('products.edit');
+
 Route::put('/products/update/{id}', [ProductController::class, 'update'])
     ->name('products.update');
+    
 Route::delete('/products/destroy', [ProductController::class, 'destroy'])
     ->name('products.destroy');
 
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -119,3 +119,7 @@ function handleCheckProduct(product){
         $("#submit_" + id).attr('disabled', true);
     }
 }
+
+function hide(){
+  document.getElementById('login').style.display='none';
+}

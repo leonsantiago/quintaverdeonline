@@ -33,7 +33,7 @@
     <header class="row main-header  justify-content-center">
         <div class="col-9" id="logo">
             <div class="header mx-auto">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('products') }}">
                     <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
                 </a>
             </div>
