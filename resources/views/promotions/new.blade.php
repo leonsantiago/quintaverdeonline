@@ -1,44 +1,108 @@
 @extends('admin.navbar')
 @section('menu')
 
-<div class="row mt-3 mb-3">
-    <div class="col-12 margin-tb">
+<div class="row">
+    <div class="col-lg-12 margin-tb">
         <div class="pull-left text-shadow">
-            <h2 class="h1 mb-1">Nueva promoción</h2>
+            <h2>Nuevo promoción</h2>
         </div>
     </div>
 </div>
 
-<div class="row col-12" id="categories" >
-    <div class="form-group text-center categories">
-        <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
-        @foreach ($categories as $category)
-            <button class="col-3 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
-        @endforeach
+<form action="{{ route('promotions.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+
+    {{-- ... customer name and email fields --}}
+    <div class="row client-info">
+        <div class="form-group col-11">
+            <label class="text-shadow" for="name">Nombre</label>
+            <input type="text" class="form-control" name="name" id="name" required>
+        </div>
+        <div class="form-group col-11">
+            <label class="text-shadow" for="description">Descripción</label>
+            <textarea class="form-control" name="description" id="description" cols="" rows="3" placeholder="Breve descripción de la promoción"></textarea>
+        </div>
+        <div class="form-group col-11">
+            <label class="text-shadow" for="description">Imagen</label>
+            <input type="file" name="image" class="form-control" placeholder="image">
+        </div>
+        <div class="form-group text-center">
+            <label for="active">¿Hay stock?</label>
+            <input type="checkbox" name="active" value="true">
+        </div>
+        <div class="row col-8 mx-auto mt-3">
+            <div class="input-group">
+                <span class="input-group-text">Precio: </span>
+                <input type="number" name="price" class="form-control pull-left" placeholder="$ " style="width: 30% !important;" >
+            </div>
+        </div>  
     </div>
-</div>
-<form action="{{ route('promotions.create') }}" method="get">
-    <div class="card-body p-5 mt-4">
-        <h2 class="h4 mb-1">Productos</h2>
-        <p class="small font-italic mb-4">Elija los productos que incluirá la promoción</p>
-        <hr>
-        <ul class="list-group" style="box-shadow: 5px 3px 20px 0px #0000004f;">
-            @foreach ($products as $product)
-                <li class="list-group-item rounded-0" id="{{ $product->getCategory() }}" style="padding: 10px;">
-                    <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" id="{{ $product->id }}" type="checkbox" onchange='handleCheckProduct(this);'>
-                        <label class="cursor-pointer font-italic custom-control-label" style="" for="{{ $product->id }}">{{ $product->name }}</label>
-                        <input type="hidden" name="products[]" id="submit_{{ $product->id }}" value="{{ $product->id }}" disabled>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
+
+    <hr>
+
+    {{-- P R O D U C T S --}}
+
+
+    <h2 class="h4 mt-4">Productos</h2>
+    <table class="table table-striped product-table" id="products_table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="product0">
+                <td>
+                    <select name="products[]" class="form-control">
+                        <option value="">-- seleccione --</option>
+                        @foreach ($products as $product)
+                            <option value="{{ $product->id }}">
+                                {{ $product->name }} (${{ number_format($product->price, 2) }})
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>
+                    <input type="number" name="quantities[]" class="form-control" value="1" />
+                </td>
+            </tr>
+            <tr id="product1"></tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button id="add_row" class="btn btn-edit pull-left">+ Agregar</button>
+            <button id='delete_row' class="pull-right btn btn-danger">- Eliminar</button>
+        </div>
     </div>
-    <div class="form-group col-11 text-center">
-        <input type="submit" class="btn btn-confirm "  value="Siguiente">
+    <div class="col-5 mx-auto mt-4">
+        <div class="row text-center">
+            <input name="save"class="btn btn-success" type="submit" value="Guardar">
+        </div>
     </div>
 </form>
 
 
-<script src="{{ URL::asset('js/app.js') }}"></script>
+<script>
+     $(document).ready(function(){
+    let row_number = 1;
+    $("#add_row").click(function(e){
+      e.preventDefault();
+      let new_row_number = row_number - 1;
+      $('#product' + row_number).html($('#product' + new_row_number).html()).find('td:first-child');
+      $('#products_table').append('<tr id="product' + (row_number + 1) + '"></tr>');
+      row_number++;
+    });
+
+    $("#delete_row").click(function(e){
+      e.preventDefault();
+      if(row_number > 1){
+        $("#product" + (row_number - 1)).html('');
+        row_number--;
+      }
+    });
+  });
+</script>
 @endsection

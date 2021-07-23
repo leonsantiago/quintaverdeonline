@@ -32,7 +32,7 @@
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->pivot['quantity'] . " " . $product->get_unit()  }}</td>
+                    <td>{{ $product->pivot['quantity'] . " " . $product->get_unit($product->unit, $product->pivot['quantity'])  }}</td>
                 </tr>
             @endforeach
         </table>

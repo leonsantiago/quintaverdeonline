@@ -159,34 +159,60 @@
         <div><span>DIRECCIÓN</span> {{ $client->address }}</div>
         <div><span>EMAIL</span> <a href="mailto:john@example.com">  </a></div>
         <div><span>FECHA</span> {{ $order->created_at }}</div>
-        <div><span>A ENTREGAR</span>  </div>
+        <div><span>A ENTREGAR</span>{{ $order->deliverDate() }}  </div>
     </div>
 </header>
 <main>
     <table>
+      @if (isset($order->products))
         <thead>
         <tr>
-            <th class="service">PRODUCTO</th>
-            <th class="desc">DESCRIPCIÓN</th>
-            <th>PRECIO</th>
-            <th>CANTIDAD</th>
-            <th>TOTAL</th>
+          <th class="service">PRODUCTO</th>
+          <th class="desc">DESCRIPCIÓN</th>
+          <th>PRECIO</th>
+          <th>CANTIDAD</th>
+          <th>TOTAL</th>
         </tr>
         </thead>
         <tbody>
         @foreach($order->products as $product)
-            <tr>
-                <td class="service">{{ strtoupper($product->name) }}</td>
-                <td class="desc"> - </td>
-                <td class="unit">${{ $product->price }}</td>
-                <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit() }}</td>
-                <td class="total"> $ {{ $product->price * $product->pivot['quantity'] }}</td>
-            </tr>
+          <tr>
+            <td class="service">{{ strtoupper($product->name) }}</td>
+            <td class="desc"> - </td>
+            <td class="unit">${{ $product->price }}</td>
+            <td class="qty">{{ $product->pivot['quantity'] . ' x ' . $product->get_unit($product->unit, $product->pivot['quantity']) }}</td>
+            <td class="total"> $ {{ number_format($order->productSubtotal($product->id),2,',','.') }}</td>
+          </tr>
         @endforeach
+      @endif
+      @if (isset($order->promotions))
+        {{-- <tr>
+          <th class="service">PROMOCIÓN</th>
+          <th>DESCRIPCIÓN</th>
+          <th>PRECIO</th>
+          <th>CANTIDAD</th>
+          <th>SUBTOTAL</th>
+        </tr> --}}
+        @foreach ($order->promotions as $promotion)
+          <tr>
+            <td class="service">{{ strtoupper($promotion->name) }}</td>
+            <td class="desc">
+              <ul>
+                @foreach ($promotion->products as $product )
+                  <li>{{ $product->name }} x {{ $product->pivot['quantity'] }} {{ $product->get_unit($product->unit, $product->pivot['quantity']) }}</li>
+                @endforeach
+              </ul>
+            </td>
+            <td class="unit">$ {{ $promotion->price }}</td>
+            <td class="qty">{{ $promotion->pivot['quantity'] }} un.</td>
+            <td class="total"> $ {{ number_format($order->promotionSubtotal($promotion->id),2,',','.') }}</td>
+          </tr>
+        @endforeach
+      @endif
 
         <tr>
             <td colspan="4" class="grand total">TOTAL</td>
-            <td class="grand total">$ {{ $order->total }}</td>
+            <td class="grand total">$ {{ number_format($order->total,2,',','.') }}</td>
         </tr>
         </tbody>
     </table>

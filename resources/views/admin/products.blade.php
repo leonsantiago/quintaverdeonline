@@ -32,7 +32,14 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td><img class="img-thumbnail" src="/image/{{ $product->image }}" width="100px"></td>
-                <td>{{ $product->name }}</td>
+                <td>
+                  <ul style="list-style-type: none;">
+                    <li><strong>{{ $product->name }}</strong></li>
+                    @if ($product->active == 0)
+                      <li style="color: rgba(197, 51, 51, 0.747)">{{ $product->stock() }}</li>
+                    @endif
+                  </ul>
+                </td>
                 <td><a class="btn" href="{{ route('products.show', $product->id) }}" style="color: black;"><i class="fa fa-cog"></i> </a></td>
             </tr>
         @endforeach

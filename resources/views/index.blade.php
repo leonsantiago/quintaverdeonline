@@ -8,6 +8,8 @@
 
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -31,7 +33,7 @@
     <header class="row main-header  justify-content-center">
         <div class="col-9" id="logo">
             <div class="header mx-auto">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('products') }}">
                     <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
                 </a>
             </div>

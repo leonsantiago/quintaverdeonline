@@ -3,8 +3,9 @@
 
     <div class="row">
         <div class="col-lg-12 margin-tb" style="margin: 2vh 0vh">
-            <div class="pull-left">
+            <div class="pull-left text-shadow">
                 <h2>{{ $product->name }}</h2>
+                <hr>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
        return view('products.index',[
-           'products' => Product::all()->sortByDesc('name',1),
+           'products' => Product::where('active', 1)->orderBy('name')->get(),
+           'promotions' => Promotion::where('active', 1)->get(),
            'categories' => Category::all()
        ]);
     }
@@ -107,7 +109,7 @@ class ProductController extends Controller
         }else{
             unset($input['image']);
         }
-        #dd($input);
+        
         if ($product->update($input)){
             $product->active = $input['active'];
             $product->save();
