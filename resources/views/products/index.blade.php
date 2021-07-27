@@ -11,10 +11,10 @@
   </div>
   <div class="row col-12" id="categories" >
     <div class="form-group text-center categories">
-      <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
-      <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Promociones')">Promociones</button>
+      <button class="col-5 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
+      <button class="col-5 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Promociones')">Promociones</button>
       @foreach ($categories as $category)
-        <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
+        <button class="col-5 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
       @endforeach
     </div>
   </div>
