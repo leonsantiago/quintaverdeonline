@@ -6,11 +6,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
 
-        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <script src="{{ secure_asset('js/bootstrap.js') }}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
