@@ -44,5 +44,5 @@
       </div>
     </div>
   </form>
-  <script src="{{ URL::asset('js/custom_app.js') }}"></script>
+  <script src="{{ URL::secure_asset('js/custom_app.js') }}"></script>
 @endsection
