@@ -9,6 +9,7 @@
         <link href="{{ secure_asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('js/custom_app.js') }}" rel="stylesheet">
 
         <script src="{{ secure_asset('js/bootstrap.js') }}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
