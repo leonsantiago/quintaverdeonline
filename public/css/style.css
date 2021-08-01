@@ -24,7 +24,8 @@ body{
     /* background: linear-gradient(to right, #c04848, #480048); */
     /* background: linear-gradient(to right top, #11998e, #38ef7d); */
     /* background: linear-gradient(to right top, #34e89e, #0f3443); */
-    background: linear-gradient(to top, #00f260, #2e567e);
+    /* background: #F2F2F2; */
+    background: #9CC29A;
     background-repeat: repeat;
     background-attachment: fixed;
 }
@@ -114,14 +115,15 @@ div.central{
 
 /*P R O D U C T O S*/
 
-.categories{
-    background: rgba(57, 48, 48, 0.4);
+/* .categories{
+    background: rgb(68,129,61);
     border-radius: 10px;
-}
+} */
 .product{
     margin: 10px 10px;
     padding: 10px;
-    background: rgba(15, 60, 60, 0.38);
+    background: #5C7A5B;
+    /* background: rgb(68,129,61); */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(15px);
     border: 2px solid gray;
@@ -150,6 +152,7 @@ div.central{
     box-shadow: 2px 1px 20px 5px black;
 }
 .product-info{
+    color: #FFFFFF !important;
     padding: 10px;
     margin: 10px;
     /*background: rgba(0, 142, 154, 0.57);
@@ -158,6 +161,16 @@ div.central{
     border-radius: 35px;
     box-shadow: 1px 1px 10px black; */
 
+}
+.btn-increase{
+  font-weight: bold;
+  background: #FFFFFF;
+  color: black;
+}
+.btn-decrease{
+  font-weight: bold;
+  background: #FFFFFF;
+  color: grey;
 }
 .quantity{
     box-shadow: 1px 1px 10px black;
@@ -184,7 +197,7 @@ input[type=number]::-webkit-outer-spin-button {
 .btn-order{
     height: 6vh;
     color: white !important;
-    background: #45926c !important;
+    background: #5B7A5B !important;
     box-shadow: 2px 1px 20px 5px black;
     width: auto;
     font-size: 2.5vh;
@@ -307,8 +320,18 @@ input[type=number]::-webkit-outer-spin-button {
 .dropdown-menu{
     background: rgba(255, 255, 255, 0.17) !important
 }
+.btn-category{
+  color: white;
+  background: #5B7A5B;
+  /* box-shadow: 2px 2px 10px 2px black;
+  border: 2px solid white; */
+}
+
 .btn-category:hover{
-    box-shadow: inset 2px 2px 10px 2px #ffffff78;
+  color: #FFFFFF;
+  border: 2px solid white;
+  box-shadow: 2px 2px 10px 2px #ffffff78;
+  font-weight: 800;
 }
 .btn-edit{
     color: black;

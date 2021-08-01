@@ -1,9 +1,9 @@
-<div id="{{ $product->getCategory()}}" class="col-11 col-md-2 align-middle text-shadow product">
+<div id="{{ $product->getCategory()}}" class="col-11 col-md-2 align-middle product">
   <?php $img_url = '/images/' . strtolower( $product->name ) . '.jpg' ?>
   <div class="product-image">
     <img src="/image/{{ $product->image }}" alt="" class="mx-auto d-block rounded-circle">
   </div>
-  <div class="row well product-info text-shadow text-center">
+  <div class="row well product-info text-center">
     <h4>{{ $product->name }}</h4>
     <h6>$ {{ $product->price }} por {{ $product->unit }}</h6>
   </div>
@@ -11,7 +11,7 @@
     <?php  $product_id_unit = $product->id . '_' . $product->unit ?>
     <div class="btn-group col-10 mx-auto justify-content-around text-center" role="group">
       <div class="col-4" id="decrease" onclick="decreaseValue('{{ $product_id_unit }}')" value="Decrease Value">
-        <button type="button" class="btn btn-danger rounded-circle" style="min-width: 38px;" >-</button>
+        <button type="button" class="btn btn-increase rounded-circle" style="min-width: 38px;" >-</button>
       </div>
       <div class="col-6">
         <div class="text-center">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="col-4" id="increase" onclick="increaseValue('{{ $product_id_unit }}')" value="Increase Value">
-        <button type="button" class="btn btn-success rounded-circle" style="min-width: 38px;">+</button>
+        <button type="button" class="btn btn-increase rounded-circle" style="min-width: 38px;">+</button>
       </div>
     </div>
   </div>
