@@ -43,7 +43,7 @@
       </div>
       <div class="row col-md-4 mx-auto justify-content-around text-center" style="margin: 2vh 1vh;">
         <div class="col-5">
-          <button type="button" class="btn btn-edit" onclick= "window.history.back();">Modificar</button>
+          <button type="button" class="btn btn-back" onclick= "window.history.back();">Modificar</button>
         </div>
         <div class="col-5">
           <button type="button" class="btn btn-continue" onclick="showPaymentInfo()">Continuar</button>

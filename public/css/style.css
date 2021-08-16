@@ -256,11 +256,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .table{
     font-size: 2.5vh;
-    background: rgba(20, 26, 20, 0.31);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    background: #5B7A5B;
     border-radius: 10px;
-    box-shadow: -1px 1px 11px 1px black
 }
 .payment-info{
     font-size: 2.5vh;
@@ -284,41 +281,43 @@ input[type=number]::-webkit-outer-spin-button {
     display: none;
 }*/
 .payment-type{
-    margin: 1vh;
+  margin: 1vh;
 }
  input[type="radio"]:checked{
-     box-shadow: 0px 0px 11px 8px #f4efef52;
+  box-shadow: 0px 0px 11px 8px #f4efef52;
  }
 
 .total{
-    background: rgba(20, 26, 20, 0.31);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border: 2px solid #ddd;
-    margin: 2vh 0vh;
-    padding: 2vh;
-    box-shadow: 2px 2px 10px 2px black
+  font-size: 1.3em !important;
+  background: #5B7A5B;
+  border-radius: 10px;
+  margin: 2vh 0vh;
+  padding: 1vh;
+}
+
+.btn-back{
+  color: black;
+  background: #FFFFFF;
 }
 
 .btn-continue{
-    color: black;
-    background: rgba(54, 238, 91, 0.68);
-    box-shadow: 2px 2px 10px 2px black;
-    border: 2px solid white;
+  color: #FFFFFF;
+  background: #5B7A5B;
+  /* box-shadow: 2px 2px 10px 2px black;
+  border: 2px solid white; */
 }
 .btn-continue:hover{
-    color: white;
-    font-weight: bold;
-    box-shadow:2px 2px 10px 2px white;
+  color: white;
+  font-weight: bold;
+  box-shadow:2px 2px 10px 2px white;
 }
 .bg-light{
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.17) !important;
-    backdrop-filter: blur(10px);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.17) !important;
+  backdrop-filter: blur(10px);
 }
 .dropdown-menu{
-    background: rgba(255, 255, 255, 0.17) !important
+  background: rgba(255, 255, 255, 0.17) !important
 }
 .btn-category{
   color: white;
@@ -334,36 +333,35 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: 800;
 }
 .btn-edit{
-    color: black;
-    background: rgba(214, 222, 226, 0.93);
-    box-shadow: 2px 2px 10px 2px black;
-    border: 2px solid white;
+  color: black;
+  background: rgba(214, 222, 226, 0.93);
+  box-shadow: 2px 2px 10px 2px black;
+  border: 2px solid white;
 }
 .btn-confirm{
-    color: black;
-    background: rgba(33, 213, 69);
-    box-shadow: 2px 2px 10px 2px black;
-    border: 2px solid white;
-    margin: 3em;
+  color: black;
+  background: rgba(33, 213, 69);
+  box-shadow: 2px 2px 10px 2px black;
+  border: 2px solid white;
+  margin: 3em;
 }
 a{
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: #FFFFFF;
 }
 .download-pdf{
-    color: white;
-    background: rgba(44, 129, 51, 0.44);
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px 2px black;
-    border: 2px solid white;
-    margin: 3em;
-    padding: 1vh;
+  color: #9CC29A !important;
+  background: #5B7A5B;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 2px black;
+  border: 2px solid white;
+  margin: 3em;
+  padding: 1vh;
 }
 .delivery-info{
-    border-radius: 8px;
-    padding: 1vh 0vh;
-    background: rgba(20, 26, 20, 0.31);
-    backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 1vh 0vh;
+  background: rgba(20, 26, 20, 0.31);
 }
 
 
