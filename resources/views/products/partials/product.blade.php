@@ -10,7 +10,7 @@
   <div class="row">
     <?php  $product_id_unit = $product->id . '_' . $product->unit ?>
     <div class="btn-group col-10 mx-auto justify-content-around text-center" role="group">
-      <div class="col-4" id="decrease" onclick="decreaseValue('{{ $product_id_unit }}')" value="Decrease Value">
+      <div class="col-3" id="decrease" onclick="decreaseValue('{{ $product_id_unit }}')" value="Decrease Value">
         <button type="button" class="btn btn-increase rounded-circle" style="min-width: 38px;" >-</button>
       </div>
       <div class="col-6">
@@ -23,9 +23,14 @@
             <input type="hidden" id="{{ $product->id }}_product" name="products[{{ $product->id }}]" value="{{ $product->id }}" disabled="true">
         </div>
       </div>
-      <div class="col-4" id="increase" onclick="increaseValue('{{ $product_id_unit }}')" value="Increase Value">
+      <div class="col-3" id="increase" onclick="increaseValue('{{ $product_id_unit }}')" value="Increase Value">
         <button type="button" class="btn btn-increase rounded-circle" style="min-width: 38px;">+</button>
       </div>
     </div>
   </div>
 </div>
+<style>
+  .col-3 {
+    max-width: 100% !important;
+  }
+</style>

@@ -101,7 +101,7 @@ Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
 Route::put('/products/update/{id}', [ProductController::class, 'update'])
     ->name('products.update');
     
-Route::delete('/products/destroy', [ProductController::class, 'destroy'])
+Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])
     ->name('products.destroy');
 
 Auth::routes();

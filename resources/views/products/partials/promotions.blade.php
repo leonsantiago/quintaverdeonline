@@ -5,6 +5,7 @@
   <div class="row well product-info text-center">
       <h4>{{ $promotion->name }}</h4>
       <h6>$ {{ $promotion->price }}</h6>
+      <h6>*Toque la imágen para ver detalles</h5>
   </div>
 
   <div class="row">

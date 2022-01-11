@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary" id="btn-save" style="margin: 2vh 1vh" hidden disabled><i class="far fa-save"> Guardar</i></button>
+                        <button type="submit" class="btn btn-primary" id="btn-save" style="margin: 2vh 1vh" hidden disabled><i class="far fa-save"></i> Guardar</button>
                     </div>
                 </div>
             </div>
@@ -93,11 +93,18 @@
             {!! Form::close() !!}
 
             <div class="row justify-content-center text-center" style="margin-top: 2vh;">
-                <div class="col-6">
+                <div class="col-4">
                     <a class="btn btn-edit" href="#" onclick="enable_edit()"> <i class="fas fa-edit"></i> Editar</a>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <a class="btn btn-edit" href="{{ route('admin.products') }}"> <i class="fas fa-arrow-circle-left"></i> Atras</a>
+                </div>
+                <div class="col-4">
+                    {!! Form::open(array('route' => array('products.destroy', $product->id ))) !!}
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-edit" onclick="return confirm('¿Está seguro de eliminar {{ $product->name }}?')" ><i class="fas fa-trash-alt"></i> Borrar</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
