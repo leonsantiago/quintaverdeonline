@@ -1,7 +1,7 @@
 <div id="{{ $product->getCategory()}}" class="col-11 col-md-2 align-middle product">
   <?php $img_url = '/images/' . strtolower( $product->name ) . '.jpg' ?>
   <div class="product-image">
-    <img src="/image/{{ $product->image }}" alt="" class="mx-auto d-block rounded-circle">
+    <img src="{{ $product->image_url() }}" alt="" class="mx-auto d-block rounded-circle">
   </div>
   <div class="row well product-info text-center">
     <h4>{{ $product->name }}</h4>

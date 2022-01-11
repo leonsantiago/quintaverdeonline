@@ -65,6 +65,15 @@ class Product extends Model
       }
     }
 
+    public function image_url(){
+      if ($this->image == null){
+        return '/image/icons/default_image.png';
+      }else{
+        return '/image/' . $this->image;
+      }
+
+    }
+
     public function getCategory(){
         return $this->category->name;
     }
