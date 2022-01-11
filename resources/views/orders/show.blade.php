@@ -12,7 +12,7 @@
     </div>
     <hr>
   </div>
-  <div class="form-group">
+  <div class="form-group" style="color: #5B7A5B">
     <ul>
       <li>Cliente: {{ $client->lastname . ', ' . $client->name }}</li>
       <li>Teléfono: {{ $client->phone }}</li>
@@ -20,7 +20,7 @@
     </ul>
   </div>
   <div class="col-12 col-md-5 mx-auto">
-    <table class="table table-borderless col-11 col-md-4 text-shadow" style="color:white; font-size: 15px;">
+    <table class="table table-borderless align-middle col-12 col-md-4" style="color:white; font-size: 15px;">
       <thead>
         @if (count($order->products))
           <tr>
@@ -44,13 +44,13 @@
             </tr>
             <?php $total += $order->productSubtotal($product->id) ?>
             <?php $i++; ?>
+            <th colspan="4"><hr class="my-4"></th>
           @endforeach
         @endif
         @if (count($order->promotions))
           @php
             $j = 1;
           @endphp  
-          <th colspan="4"><hr class="my-4"></th>
           <tr>
             <th>#</th>
             <th>Promoción</th>
@@ -74,12 +74,12 @@
     </table>
       <div class="row col-8 col-md-5 mx-auto py-auto">
         <div class="text-center text-shadow total">
-          <h4>Total: ${{ number_format($total, 2, ',', '.') }}</h4>
+          <p>Total: ${{ number_format($total, 2, ',', '.') }}</p>
         </div>
       </div>
       <p class=" h3 text-center text-shadow">{{ $order->deliverDate() }}</p>
       <div class="row col-6 mx-auto text-center download-pdf">
-        <div class="text-shadow">
+        <div class="">
           <a href="{{ URL::to('orders/pdf/' . $order->id) }}">
             <label for="" style="font-size: 20px"><i class="fas fa-download m-2" style="background: transparent; color: white;"></i> Descargar</label>
           </a>

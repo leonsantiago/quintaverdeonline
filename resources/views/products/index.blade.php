@@ -11,10 +11,10 @@
   </div>
   <div class="row col-12" id="categories" >
     <div class="form-group text-center categories">
-      <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Todos')">Todos</button>
-      <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" onclick="selectCategory('Promociones')">Promociones</button>
+      <button class="col-5 btn btn-category mx-2 my-2" onclick="selectCategory('Todos')">Todos</button>
+      <button class="col-5 btn btn-category mx-2 my-2" onclick="selectCategory('Promociones')">Promociones</button>
       @foreach ($categories as $category)
-        <button class="col-4 btn btn-edit btn-category mx-2 my-2 text-shadow" style="color:white; background: transparent;" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
+        <button class="col-5 btn btn-category mx-2 my-2" id="" onclick="selectCategory('{{ $category->name }}')">{{ $category->name }}</button>
       @endforeach
     </div>
   </div>
@@ -39,7 +39,7 @@
     <div class="row text-center float-button">
       <div class="col-12 mx-auto">
         <div class="col-12 col-md-4 mx-auto fixed-bottom">
-          <input class="btn btn-edit btn-order text-shadow" name="ver_pedido" type="submit" value="Ver mi pedido" onclick="notSubmit()">
+          <input class="btn btn-edit btn-order" name="ver_pedido" type="submit" value="Ver mi pedido" onclick="notSubmit()">
         </div>
       </div>
     </div>

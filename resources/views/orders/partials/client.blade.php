@@ -17,6 +17,6 @@
     <input type="text" class="form-control" name="address" id="address" placeholder="Frias Silva 111 2A, Yerba Buena" required>
   </div>
   <div class="form-group col-11">
-    <input type="submit" class="btn btn-confirm "  value="Confirmar pedido">
+    <input type="submit" class="btn btn-continue my-4"  value="Confirmar pedido">
   </div>
 </div>

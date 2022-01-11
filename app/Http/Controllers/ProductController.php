@@ -130,6 +130,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('admin.products')->with('success', 'El producto fue eliminado con éxito.');
     }
 }
