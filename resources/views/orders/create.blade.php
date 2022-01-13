@@ -36,8 +36,9 @@
           </table>
           <div class="row col-10 mx-auto">
             <div class="text-center text-shadow total">
-              <h4 class="my-auto">Total: $ {{  number_format($total,2, ',', '.')  }}</h4>
+              <h5 class="my-auto">Total: $ {{  number_format($total,2, ',', '.')  }}</h5> <h6>+ envio(*)</h6>
               <input type="hidden" name="total" id="total" value="{{ $total }}">
+              <h6>El envío varia según la zona</h6>
             </div>
           </div>
       </div>
@@ -91,9 +92,9 @@
 <script>
   function validateMinimum() {
     let ok = true;
-    let msg = "El valor mínimo del pedido debe ser de $500.";
+    let msg = "El valor mínimo del pedido debe ser de $1000.";
     let total = document.getElementById("total");
-    if (total < 500){
+    if (total < 1000){
       ok = false;
       total.style.visibility = "visible";
       total.focus();

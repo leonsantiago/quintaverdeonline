@@ -144,7 +144,7 @@
 <body>
 <header class="clearfix" style="width: 90%">
     <div id="logo">
-        <img src="https://quintaverde.online/assets/img/otros/quinta_verde2.png">
+      <img  src="{{ public_path("/image/icons/icon.png") }}" class="rounded" style="height: 100px" alt="Quinta verde logo">
     </div>
     <h1>PEDIDO N°: {{ $order->id }}</h1>
     <div id="company" class="clearfix">
@@ -218,9 +218,12 @@
     </table>
     <div id="notices">
         <div>AVISO: </div>
-        <div class="notice">Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs
+        <div class="notice">Las entregas se realizan de Lunes a  Viernes solo por las mañanas.
 
-            Únicamente para Yerba Buena.</div>
+            Únicamente para Yerba Buena.
+
+            Ante cualquier consulta comunicarse al: +54 381 212-8953
+          </div>
     </div>
 </main>
 <footer>

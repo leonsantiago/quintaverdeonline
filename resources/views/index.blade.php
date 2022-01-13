@@ -34,7 +34,7 @@
         <div class="col-9" id="logo">
             <div class="header mx-auto">
                 <a href="{{ route('products') }}">
-                    <img  src="https://quintaverde.online/assets/img/otros/quinta_verde2.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
+                    <img  src="/image/icons/icon.png" class="rounded" style="height: 100px" alt="Quinta verde logo">
                 </a>
             </div>
         </div>

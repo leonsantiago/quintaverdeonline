@@ -94,8 +94,9 @@
     </div>
     <div class="row">
       <div class="col-11 col-md-6 entregas text-shadow mx-auto text-center" style="color: white;">
-        <p>Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs</p>
+        <p>Las entregas se realizan de Lunes a  Viernes solo por las mañanas.</p>
         <p>Únicamente para Yerba Buena</p>
+        <p>Ante cualquier consulta comunicarse al: +54 381 212-8953</p>
       </div>
     </div>
   </div>

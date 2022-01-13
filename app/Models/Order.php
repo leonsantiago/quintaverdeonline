@@ -69,13 +69,13 @@ class Order extends Model
             return 'Su pedido será entregado el Lunes.';
             break;
           case 'Monday':
-            return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Miércoles.';
+            return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Martes.';
             break;
           case 'Tuesday':
-            return 'Su pedido será entregado el Miércoles.';
+            return 'Su pedido será entregado mañana.';
             break;
           case 'Wednesday':
-            return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Viernes.';
+            return ($hour < 4) ? 'Su pedido será entregado mañana.' : 'Su pedido será entregado el Jueves.';
             break;
           case 'Thursday':
             return 'Su pedido será entregado el Viernes.';
@@ -87,7 +87,7 @@ class Order extends Model
             return 'Su pedido será entregado el Lunes';
             break;
           default:
-            return 'Las entregas se realizan los días Lunes, Miércoles y Viernes entre las 11:00hs y 14:00hs.';
+            return 'Su pedido será entregado mañana';
             break;
       }
     }
