@@ -45,9 +45,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
 
-
+        dd($input);
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -94,12 +94,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
 
+        $input = $request->validated();
+        dd($input);
         $product = Product::find($id);
 
-        $input = $request->all();
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $name = str_replace(' ', '', $product->name);

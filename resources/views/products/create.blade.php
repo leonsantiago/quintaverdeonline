@@ -57,13 +57,13 @@
                 <div class="col-10 col-md-3">
                     <div class="form-group">
                         <string>Precio: </string>
-                        <input type="number" name="price" class="form-control" placeholder="Precio">
+                        <input type="number" name="price" class="form-control" placeholder="Precio" required>
                     </div>
                 </div>
                 <div class="col-10 col-md-3">
                     <div class="form-group">
                         <strong>Unidad: </strong>
-                        <select name="unit" id="unit" class="form-select form-select-sm">
+                        <select name="unit" id="unit" class="form-select form-select-sm" required>
                             <option selected>Elija una unidad</option>
                             @foreach( \App\Models\Product::UNIT_TYPE as $unit)
                                 <option value="{{ $unit }}"> {{ ucfirst($unit) }}</option>

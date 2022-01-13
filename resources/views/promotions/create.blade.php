@@ -47,7 +47,7 @@
         </div>
         <div class="form-group text-center">
             <label for="active">¿Hay stock?</label>
-            <input type="checkbox" name="active" value="true">
+            <input type="checkbox" name="active" value="true" checked>
         </div>
         <div class="row col-8 mx-auto mt-3">
             <div class="input-group">
