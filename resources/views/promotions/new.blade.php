@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left text-shadow">
-            <h2>Nuevo promoción</h2>
+            <h2>Nueva promoción</h2>
         </div>
     </div>
 </div>
@@ -26,11 +26,18 @@
             <label class="text-shadow" for="description">Imagen</label>
             <input type="file" name="image" class="form-control" placeholder="image">
         </div>
-        <div class="form-group text-center">
+        <div class="form-group col-11">
+        <label class="text-shadow" for="description">Stock</label>
+          <select name="active" id="active" class="form-select form-select-sm">
+              <option value="1" >Stock disponible</option>
+              <option value="0" >Sin stock</option>
+          </select>
+        </div>
+        <!-- <div class="form-group text-center">
             <label for="active">¿Hay stock?</label>
             <input type="checkbox" name="active" value="true">
-        </div>
-        <div class="row col-8 mx-auto mt-3">
+        </div> -->
+        <div class="form-group col-11 ">
             <div class="input-group">
                 <span class="input-group-text">Precio: </span>
                 <input type="number" name="price" class="form-control pull-left" placeholder="$ " style="width: 30% !important;" >

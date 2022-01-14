@@ -40,6 +40,11 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <a class="btn btn-primary" href="{{ route('promotions.edit', $promotion->id) }}"> <i class="fa fa-edit"></i> Editar</a>
+          {!! Form::open(array('route' => array('promotions.destroy', $promotion->id ))) !!}
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar {{ $promotion->name }}?')" ><i class="fas fa-trash-alt"></i> Borrar</button>
+          {!! Form::close() !!}
         </div>
       </div>
     </div>

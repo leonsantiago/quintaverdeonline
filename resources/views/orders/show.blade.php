@@ -19,8 +19,8 @@
       <li>Dirección: {{ $client->address }}</li>
     </ul>
   </div>
-  <div class="col-12 col-md-5 mx-auto">
-    <table class="table table-borderless align-middle col-12 col-md-4" style="color:white; font-size: 15px;">
+  <div class="col-12 col-md-12 mx-auto">
+    <table class="table table-borderless align-middle col-12 col-md-12" style="color:white; font-size: 15px;">
       <thead>
         @if (count($order->products))
           <tr>
@@ -44,7 +44,7 @@
             </tr>
             <?php $total += $order->productSubtotal($product->id) ?>
             <?php $i++; ?>
-            <th colspan="4"><hr class="my-4"></th>
+            <th colspan="4"><hr class="my-1"></th>
           @endforeach
         @endif
         @if (count($order->promotions))
@@ -77,11 +77,11 @@
           <p>Total: ${{ number_format($total, 2, ',', '.') }}</p>
         </div>
       </div>
-      <p class=" h3 text-center text-shadow">{{ $order->deliverDate() }}</p>
-      <div class="row col-6 mx-auto text-center download-pdf">
+      <p class=" h4 text-center text-shadow">{{ $order->deliverDate() }}</p>
+      <div class="row col-8 mx-auto text-center download-pdf">
         <div class="">
           <a href="{{ URL::to('orders/pdf/' . $order->id) }}">
-            <label for="" style="font-size: 20px"><i class="fas fa-download m-2" style="background: transparent; color: white;"></i> Descargar</label>
+            <label for="" style="font-size: 14px"><i class="fas fa-download m-1" style="background: transparent; color: white;"></i> Descargar pedido</label>
           </a>
         </div>
       </div>

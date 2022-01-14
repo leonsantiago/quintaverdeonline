@@ -25,7 +25,7 @@ class AdminController extends Controller
               $to = date('Y-m-d');
             }
 
-            $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->get();
+            $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('created_at', 'desc')->take(50)->get();
         }else{
             $orders = Order::all()->sortByDesc('created_at');
         }

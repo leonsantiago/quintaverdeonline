@@ -12,8 +12,8 @@
   @endif
     <form method="post" action="{{ route('orders.store') }}">
       @csrf
-      <div class="col-12 col-md-5 mx-auto">
-          <table class="table table-borderless align-middle col-12 col-md-4 text-shadow" style="color:white; font-size: 15px;">
+      <div class="row col-12 col-md-12 mx-auto">
+          <table class="table table-borderless align-middle col-12 col-md-12 text-shadow" style="color:white; font-size: 15px;">
             <?php $total = 0; ?>
             <?php $i = 1; ?>
             @if (count($products))
@@ -34,7 +34,7 @@
             @endif
               </tbody>
           </table>
-          <div class="row col-10 mx-auto">
+          <div class="row col-12 mx-auto">
             <div class="text-center text-shadow total">
               <h5 class="my-auto">Total: $ {{  number_format($total,2, ',', '.')  }}</h5> <h6>+ envio(*)</h6>
               <input type="hidden" name="total" id="total" value="{{ $total }}">

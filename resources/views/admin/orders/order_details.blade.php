@@ -1,15 +1,17 @@
 <table class="table table-borderless col-md-4 text-shadow" style="color:white; font-size: 15px;">
-  <thead>
-  <tr style="font-size: 2.5vh">
-      <th scope="col">#</th>
-      <th scope="col">Producto</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Subtotal</th>
-  </tr>
-  </thead>
+  @if (count($order->products))
+    <thead>
+      <tr style="font-size: 2.5vh">
+          <th scope="col">#</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Subtotal</th>
+      </tr>
+    </thead>
+  @endif
   <tbody>
   <?php $total = 0; ?>
-  @if (isset($order->products))
+  @if (count($order->products))
     <?php $i = 1; ?>
     @foreach( $order->products as $product )
         <tr>
@@ -25,7 +27,7 @@
         <?php $i++; ?>
     @endforeach
   @endif
-  @if (isset($order->promotions))
+  @if (count($order->promotions))
     @php
       $j = 1;
     @endphp  

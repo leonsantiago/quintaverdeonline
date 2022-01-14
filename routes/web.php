@@ -82,6 +82,9 @@ Route::post('promotions/store', [PromotionController::class, 'store'])
 Route::put('promotions/update/{id}',[ PromotionController::class, 'update'])
     ->name('promotions.update');
 
+Route::delete('promotions/{id}', [PromotionController::class, 'destroy'])
+    ->name('promotions.destroy');
+
 Route::get('promotions/products', [PromotionController::class, 'new'])
     ->name('promotions.new');
 #PRODUCTOS
@@ -104,7 +107,7 @@ Route::put('/products/update/{id}', [ProductController::class, 'update'])
 Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])
     ->name('products.destroy');
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -150,6 +150,9 @@ class PromotionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $promotion = Promotion::findOrFail($id);
+        $promotion->delete();
+        return redirect()->route('promotions.index')
+          ->with('success', 'La promoción fue eliminada con éxito.');
     }
 }
